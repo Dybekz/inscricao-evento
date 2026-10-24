@@ -16,7 +16,7 @@
   - **Depende de:** —
   - **Commit sugerido:** `chore(backend): estrutura inicial do backend`
 
-- [ ] **T02: App Express, servidor e tratamento de erros**
+- [x] **T02: App Express, servidor e tratamento de erros**
   - **Descrição:** criar o `app.js` com `cors({ origin: 'http://localhost:5173' })`, `express.json()`, o handler de rota inexistente (`404` em JSON) e o middleware de erro (JSON malformado → `400`, demais → `500`, sempre em JSON), conforme DT-04 e DT-05. Exportar o `app` sem `listen`. Criar o `server.js`, que importa o `app` e escuta em `process.env.PORT || 3001`, com um log da porta. Criar `tests/geral.test.js`.
   - **Requisitos:** REQ-BE-18, REQ-BE-19, REQ-BE-20, REQ-BE-22
   - **Arquivos:** `backend/src/app.js` (criar), `backend/src/server.js` (criar), `backend/tests/geral.test.js` (criar)
@@ -101,11 +101,11 @@
 | REQ-BE-15 | T08       | `remover.test.js` › "REQ-BE-15: remove e retorna 204"          | pendente |
 | REQ-BE-16 | T08       | `remover.test.js` › "REQ-BE-16: id inexistente → 404"          | pendente |
 | REQ-BE-17 | T08       | `remover.test.js` › "REQ-BE-17: id inválido → 400"             | pendente |
-| REQ-BE-18 | T02       | `geral.test.js` › "REQ-BE-18: JSON malformado → 400"           | pendente |
-| REQ-BE-19 | T02       | `geral.test.js` › "REQ-BE-19: CORS para localhost:5173"        | pendente |
-| REQ-BE-20 | T02, T09  | manual (T09)                                                   | pendente |
+| REQ-BE-18 | T02       | `geral.test.js` › "REQ-BE-18: retorna 400 em JSON quando o corpo não é um JSON válido" | implementado |
+| REQ-BE-19 | T02       | `geral.test.js` › "REQ-BE-19: libera CORS para o frontend em http://localhost:5173"; "REQ-BE-19: responde ao preflight com os métodos GET, POST e DELETE" | implementado |
+| REQ-BE-20 | T02, T09  | manual (T09); porta 3001 padrão conferida na T02               | parcial (falta T09) |
 | REQ-BE-21 | T03, T09  | manual (T09)                                                   | pendente |
-| REQ-BE-22 | T02, T09  | `geral.test.js` › "REQ-BE-22: rota inexistente → 404 em JSON"; "REQ-BE-22: erros dos endpoints em JSON" | pendente |
+| REQ-BE-22 | T02, T09  | `geral.test.js` › "REQ-BE-22: retorna 404 em JSON, em português, para rota inexistente"; "REQ-BE-22: erros dos endpoints em JSON" (T09) | parcial (falta T09) |
 | REQ-BE-23 | T06       | `criar.test.js` › "REQ-BE-23: formata o telefone"              | pendente |
 
 ## Registro de revisão
