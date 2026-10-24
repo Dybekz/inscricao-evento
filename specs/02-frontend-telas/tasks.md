@@ -32,7 +32,7 @@
   - **Depende de:** T02
   - **Commit sugerido:** `feat/frontend - tela do evento`
 
-- [ ] **T04: Camada de acesso à API**
+- [x] **T04: Camada de acesso à API**
   - **Descrição:** criar `api/erros.js` com `ErroDaApi` (`status`, `message`, `campos`), `ErroDeConexao` e `MENSAGEM_SEM_CONEXAO`, e `api/inscricoes.js` com `listarInscricoes`, `criarInscricao` e `removerInscricao`, usando `fetch` e `URL_DA_API = import.meta.env.VITE_API_URL || 'http://localhost:3001'` (DT-04, DT-09). Seguir a tabela "Como a camada de API devolve os erros" do design. Criar `tests/api.test.js`, simulando o `fetch` com `vi.stubGlobal`.
   - **Requisitos:** REQ-FE-19 (lança `ErroDeConexao`), REQ-FE-20 (`GET /inscricoes`), REQ-FE-26 (`DELETE /inscricoes/:id`), REQ-FE-27 (lança `ErroDaApi` com status e mensagem), REQ-FE-29 (URL padrão)
   - **Arquivos:** `frontend/src/api/erros.js` (criar), `frontend/src/api/inscricoes.js` (criar), `frontend/tests/api.test.js` (criar)
@@ -113,22 +113,22 @@
 | REQ-FE-11 | T05, T06       | `validacao.test.js` › "REQ-FE-11: ..."; `inscricao.test.jsx` › "REQ-FE-11: ..."        | pendente |
 | REQ-FE-12 | T06            | `inscricao.test.jsx` › "REQ-FE-12: ..."                                                | pendente |
 | REQ-FE-13 | T06            | `inscricao.test.jsx` › "REQ-FE-13: ..."                                                | pendente |
-| REQ-FE-14 | T07            | `inscricao.test.jsx` › "REQ-FE-14: ..."                                                | pendente |
+| REQ-FE-14 | T04, T07       | `api.test.js` › "REQ-FE-14: criarInscricao envia POST /inscricoes em JSON com os 4 campos e devolve a inscrição criada"; `inscricao.test.jsx` › "REQ-FE-14: ..." | pendente |
 | REQ-FE-15 | T07            | `inscricao.test.jsx` › "REQ-FE-15: ..."                                                | pendente |
 | REQ-FE-16 | T08            | `inscricao.test.jsx` › "REQ-FE-16: ..."                                                | pendente |
 | REQ-FE-17 | T08            | `inscricao.test.jsx` › "REQ-FE-17: ..."                                                | pendente |
 | REQ-FE-18 | T08            | `inscricao.test.jsx` › "REQ-FE-18: ..."                                                | pendente |
-| REQ-FE-19 | T04, T08       | `api.test.js` › "REQ-FE-19: ..."; `inscricao.test.jsx` › "REQ-FE-19: ..."              | pendente |
-| REQ-FE-20 | T04, T09       | `api.test.js` › "REQ-FE-20: ..."; `inscritos.test.jsx` › "REQ-FE-20: ..."              | pendente |
+| REQ-FE-19 | T04, T08       | `api.test.js` › "REQ-FE-19: falha de conexão vira ErroDeConexao com a mensagem de servidor fora do ar"; `inscricao.test.jsx` › "REQ-FE-19: ..."              | parcial (T04) |
+| REQ-FE-20 | T04, T09       | `api.test.js` › "REQ-FE-20: listarInscricoes faz GET /inscricoes e devolve o array recebido"; `inscritos.test.jsx` › "REQ-FE-20: ..."              | parcial (T04) |
 | REQ-FE-21 | T09            | `inscritos.test.jsx` › "REQ-FE-21: ..."                                                | pendente |
 | REQ-FE-22 | T09            | `inscritos.test.jsx` › "REQ-FE-22: ..."                                                | pendente |
 | REQ-FE-23 | T09            | `inscritos.test.jsx` › "REQ-FE-23: ..."                                                | pendente |
 | REQ-FE-24 | T09            | `inscritos.test.jsx` › "REQ-FE-24: ..."                                                | pendente |
 | REQ-FE-25 | T10            | `inscritos.test.jsx` › "REQ-FE-25: ..."                                                | pendente |
-| REQ-FE-26 | T04, T10       | `api.test.js` › "REQ-FE-26: ..."; `inscritos.test.jsx` › "REQ-FE-26: ..."              | pendente |
-| REQ-FE-27 | T04, T10       | `api.test.js` › "REQ-FE-27: ..."; `inscritos.test.jsx` › "REQ-FE-27: ..."              | pendente |
+| REQ-FE-26 | T04, T10       | `api.test.js` › "REQ-FE-26: removerInscricao faz DELETE /inscricoes/:id"; `inscritos.test.jsx` › "REQ-FE-26: ..."              | parcial (T04) |
+| REQ-FE-27 | T04, T10       | `api.test.js` › "REQ-FE-27: status de erro vira ErroDaApi com status, mensagem e campos"; "REQ-FE-27: status de erro com corpo que não é JSON vira \"Erro inesperado do servidor\""; `inscritos.test.jsx` › "REQ-FE-27: ..."              | parcial (T04) |
 | REQ-FE-28 | T10            | `inscritos.test.jsx` › "REQ-FE-28: ..."                                                | pendente |
-| REQ-FE-29 | T04, T11       | `api.test.js` › "REQ-FE-29: ..." (URL padrão); manual (`VITE_API_URL`)                 | pendente |
+| REQ-FE-29 | T04, T11       | `api.test.js` › "REQ-FE-29: sem VITE_API_URL, as chamadas vão para http://localhost:3001" (URL padrão); manual (`VITE_API_URL`)                 | parcial (T04) |
 | REQ-FE-30 | T01, T11       | manual                                                                                 | pendente |
 | REQ-FE-31 | T03, T11       | manual                                                                                 | pendente |
 | REQ-FE-32 | T06, T09, T11  | manual                                                                                 | pendente |
