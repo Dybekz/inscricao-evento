@@ -73,9 +73,9 @@
   - **Commit sugerido:** `feat/frontend - mostra os erros da api no formulário`
 
 - [ ] **T09: Lista de inscritos e estados da tela**
-  - **Descrição:** completar a página `Inscritos` com o carregamento ao abrir (`carregar()` num `useEffect`), os estados "Carregando inscrições…", lista vazia (com link "Inscreva-se") e falha (mensagem e "Tentar de novo"), o contador ("1 inscrito" / "N inscritos") e a tabela com Nome, E-mail, Telefone, Tipo de ingresso e a coluna de ações com o botão "Excluir" (ainda sem ação). Tipo exibido como "Estudante"/"Profissional" e telefone vazio como "—". Criar o `inscritos.css` (tabela num contêiner com `overflow-x: auto`) e `tests/inscritos.test.jsx`, com `vi.mock` da camada de API.
+  - **Descrição:** completar a página `Inscritos` com o carregamento ao abrir (`carregar()` num `useEffect`), os estados "Carregando inscrições…", lista vazia (com link "Inscreva-se") e falha (mensagem e "Tentar de novo"), o contador ("1 inscrito" / "N inscritos") e a tabela com Nome, E-mail, Telefone, Tipo de ingresso e a coluna de ações com o botão "Excluir" (ainda sem ação). Tipo exibido como "Estudante"/"Profissional" e telefone vazio como "—". Criar o `inscritos.css` (tabela num contêiner com `overflow-x: auto`) e `tests/inscritos.test.jsx`, com `vi.mock` da camada de API. Simular a camada de API também em `tests/navegacao.test.jsx` (`listarInscricoes` devolvendo `[]`), já que a tela de inscritos passa a buscar a lista ao abrir.
   - **Requisitos:** REQ-FE-20, REQ-FE-21, REQ-FE-22, REQ-FE-23, REQ-FE-24, REQ-FE-32 (tabela; verificação em T11)
-  - **Arquivos:** `frontend/src/paginas/Inscritos.jsx` (alterar), `frontend/src/estilos/inscritos.css` (criar), `frontend/tests/inscritos.test.jsx` (criar)
+  - **Arquivos:** `frontend/src/paginas/Inscritos.jsx` (alterar), `frontend/src/estilos/inscritos.css` (criar), `frontend/tests/inscritos.test.jsx` (criar), `frontend/tests/navegacao.test.jsx` (alterar)
   - **Critério de pronto:** `npm test` passa, incluindo "REQ-FE-20: ...", "REQ-FE-21: ...", "REQ-FE-22: ...", "REQ-FE-23: ..." e "REQ-FE-24: ..." (clicar em "Tentar de novo" busca de novo e mostra a lista).
   - **Depende de:** T02, T04
   - **Commit sugerido:** `feat/frontend - lista os inscritos`
