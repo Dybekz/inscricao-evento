@@ -40,7 +40,7 @@
   - **Depende de:** T01
   - **Commit sugerido:** `feat/frontend - camada de acesso à api`
 
-- [ ] **T05: Regras de validação do formulário**
+- [x] **T05: Regras de validação do formulário**
   - **Descrição:** criar `validacao/inscricao.js` com `validarFormulario(valores)`, conforme a tabela "Regras de validação do formulário" do design (mesmas expressões regulares da API, todas as mensagens de uma vez, objeto vazio quando válido). Criar `tests/validacao.test.js`.
   - **Requisitos:** REQ-FE-09, REQ-FE-10, REQ-FE-11
   - **Arquivos:** `frontend/src/validacao/inscricao.js` (criar), `frontend/tests/validacao.test.js` (criar)
@@ -108,9 +108,9 @@
 | REQ-FE-06 | T03            | `evento.test.jsx` › "REQ-FE-06: o botão \"Inscreva-se\" leva à tela de inscrição" | implementado |
 | REQ-FE-07 | T06            | `inscricao.test.jsx` › "REQ-FE-07: ..."                                                | pendente |
 | REQ-FE-08 | T06            | `inscricao.test.jsx` › "REQ-FE-08: ..."                                                | pendente |
-| REQ-FE-09 | T05, T06       | `validacao.test.js` › "REQ-FE-09: ..."; `inscricao.test.jsx` › "REQ-FE-09: ..."        | pendente |
-| REQ-FE-10 | T05, T06       | `validacao.test.js` › "REQ-FE-10: ..."; `inscricao.test.jsx` › "REQ-FE-10: ..."        | pendente |
-| REQ-FE-11 | T05, T06       | `validacao.test.js` › "REQ-FE-11: ..."; `inscricao.test.jsx` › "REQ-FE-11: ..."        | pendente |
+| REQ-FE-09 | T05, T06       | `validacao.test.js` › "REQ-FE-09: aceita valores válidos, inclusive sem telefone, devolvendo objeto vazio"; "REQ-FE-09: nome vazio ou só com espaços gera \"O nome é obrigatório\""; "REQ-FE-09: e-mail vazio ou só com espaços gera \"O e-mail é obrigatório\""; "REQ-FE-09: tipo de ingresso não escolhido gera \"Escolha o tipo de ingresso\""; "REQ-FE-09: devolve todos os campos obrigatórios de uma vez"; `inscricao.test.jsx` › "REQ-FE-09: ..."        | parcial (T05) |
+| REQ-FE-10 | T05, T06       | `validacao.test.js` › "REQ-FE-10: e-mail fora do formato texto@texto.texto gera \"Informe um e-mail válido\""; "REQ-FE-10: aceita e-mail com espaços nas pontas"; `inscricao.test.jsx` › "REQ-FE-10: ..."        | parcial (T05) |
+| REQ-FE-11 | T05, T06       | `validacao.test.js` › "REQ-FE-11: telefone com letras, símbolos ou quantidade errada de dígitos gera mensagem"; "REQ-FE-11: aceita telefone vazio, só com espaços ou com 10 e 11 dígitos em qualquer formato"; `inscricao.test.jsx` › "REQ-FE-11: ..."        | parcial (T05) |
 | REQ-FE-12 | T06            | `inscricao.test.jsx` › "REQ-FE-12: ..."                                                | pendente |
 | REQ-FE-13 | T06            | `inscricao.test.jsx` › "REQ-FE-13: ..."                                                | pendente |
 | REQ-FE-14 | T04, T07       | `api.test.js` › "REQ-FE-14: criarInscricao envia POST /inscricoes em JSON com os 4 campos e devolve a inscrição criada"; `inscricao.test.jsx` › "REQ-FE-14: ..." | pendente |
