@@ -44,10 +44,7 @@ Só se a Definição de Pronto (`CLAUDE.md`, seção 8) estiver cumprida:
 2. Atualize na **Matriz de rastreabilidade** as linhas dos requisitos da tarefa (testes reais e status `implementado`).
 3. Sugira a mensagem de commit, no padrão do `CLAUDE.md`:
    ```
-   <tipo>(<escopo>): <descrição>
-
-   Tarefa: <feature>#Tnn
-   Requisitos: REQ-..., REQ-...
+   <tipo>/<escopo> - <o que foi feito>
    ```
    Faça o commit **só** se ela pedir.
 

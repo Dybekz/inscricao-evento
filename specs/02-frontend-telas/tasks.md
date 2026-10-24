@@ -28,7 +28,7 @@ Formato de cada tarefa:
   - **Critério de pronto:** condição verificável, ex: "`npm test` no backend
     passa, incluindo o teste 'REQ-FE-01: ...'".
   - **Depende de:** — (ou T0N)
-  - **Commit sugerido:** `feat(escopo): ...`
+  - **Commit sugerido:** `feat/escopo - ...`
 -->
 
 ## Tarefas

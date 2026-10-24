@@ -158,16 +158,15 @@ A feature seguinte só começa a fase de Requisitos quando a anterior estiver co
 - Specs, comentários e mensagens de erro para o usuário em português.
 
 ### Commits
-- **Commits pequenos, um por tarefa**, no padrão [Conventional Commits](https://www.conventionalcommits.org/pt-br/):
+- **Commits pequenos, um por tarefa**, numa linha só, no formato:
   ```
-  <tipo>(<escopo>): <descrição curta no imperativo>
-
-  Tarefa: 01-api-inscricoes#T03
-  Requisitos: REQ-BE-02, REQ-BE-03
+  <tipo>/<escopo> - <o que foi feito>
   ```
+  Exemplo: `feat/backend - lista as inscrições`
+- A descrição é curta e simples, em português, sem rodapé.
 - Tipos: `feat`, `fix`, `test`, `docs`, `chore`, `refactor`, `style`.
 - Escopos: `backend`, `frontend`, `specs`, `docs`.
-- Mudanças em spec usam `docs(specs): ...`.
+- Mudanças em spec usam `docs/specs - ...`.
 - O Claude **sugere** a mensagem de commit e só faz o commit se a usuária pedir.
 
 ---

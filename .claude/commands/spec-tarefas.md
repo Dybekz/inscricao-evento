@@ -22,7 +22,7 @@ Leia o `CLAUDE.md` (seções 5 a 9), e o `requirements.md` e o `design.md` aprov
 Siga o template, removendo os comentários de instrução:
 
 - Tarefas **pequenas** (um commit cada), **ordenadas** e numeradas `T01`, `T02`...
-- Cada tarefa tem: **Descrição**, **Requisitos** (IDs), **Arquivos** (criar ou alterar), **Critério de pronto** verificável, **Depende de** e **Commit sugerido** (Conventional Commits).
+- Cada tarefa tem: **Descrição**, **Requisitos** (IDs), **Arquivos** (criar ou alterar), **Critério de pronto** verificável, **Depende de** e **Commit sugerido** (formato do `CLAUDE.md`, seção 7).
 - A primeira tarefa costuma ser o scaffolding do pacote (package.json, configuração do Vitest, script `npm test`), já que scaffolding também é código e precisa de uma tarefa.
 - Prefira colocar o teste de um requisito **na mesma tarefa** que o implementa.
 - **Todo** `REQ-*` do `requirements.md` aparece em pelo menos uma tarefa. Requisitos de verificação manual ganham uma tarefa de verificação.
@@ -34,4 +34,4 @@ Siga o template, removendo os comentários de instrução:
 
 Mostre a lista de tarefas, uma linha cada (`Tnn: título (REQs)`), e confirme que a matriz cobre todos os requisitos. Pergunte se ela aprova as tarefas.
 
-Só com aprovação explícita: mude para `Status: aprovado`, preencha `Aprovado em:`, sugira o commit `docs(specs): aprova tarefas de $ARGUMENTS` e diga que o próximo passo é `/implementar $ARGUMENTS T01`. **Não comece a implementar.**
+Só com aprovação explícita: mude para `Status: aprovado`, preencha `Aprovado em:`, sugira o commit `docs/specs - aprova tarefas de $ARGUMENTS` e diga que o próximo passo é `/implementar $ARGUMENTS T01`. **Não comece a implementar.**

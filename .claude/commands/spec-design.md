@@ -41,4 +41,4 @@ Regras:
 
 Mostre um resumo das decisões principais e confirme que todos os requisitos foram cobertos (se algum não foi, liste com o motivo). Pergunte se ela aprova o design.
 
-Só com aprovação explícita: mude para `Status: aprovado`, preencha `Aprovado em:`, sugira o commit `docs(specs): aprova design de $ARGUMENTS` e diga que o próximo passo é `/spec-tarefas $ARGUMENTS`. **Não crie as tarefas.**
+Só com aprovação explícita: mude para `Status: aprovado`, preencha `Aprovado em:`, sugira o commit `docs/specs - aprova design de $ARGUMENTS` e diga que o próximo passo é `/spec-tarefas $ARGUMENTS`. **Não crie as tarefas.**

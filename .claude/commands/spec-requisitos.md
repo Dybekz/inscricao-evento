@@ -41,4 +41,4 @@ Apresente as dúvidas numeradas (`D-01`, `D-02`...). Para cada uma, dê a pergun
 
 Mostre um resumo: quantas histórias, a lista de IDs com uma linha cada, o que ficou fora de escopo e as dúvidas que ainda estão abertas (se houver). Pergunte se ela aprova os requisitos.
 
-Só depois de uma aprovação explícita: mude o cabeçalho para `Status: aprovado`, preencha `Aprovado em:` com a data de hoje, sugira o commit `docs(specs): aprova requisitos de $ARGUMENTS` e diga que o próximo passo é `/spec-design $ARGUMENTS`. **Não comece o design.**
+Só depois de uma aprovação explícita: mude o cabeçalho para `Status: aprovado`, preencha `Aprovado em:` com a data de hoje, sugira o commit `docs/specs - aprova requisitos de $ARGUMENTS` e diga que o próximo passo é `/spec-design $ARGUMENTS`. **Não comece o design.**
