@@ -1,0 +1,185 @@
+:root {
+  --cor-primaria: #5b3df5;
+  --cor-primaria-escura: #4329d1;
+  --cor-texto: #1d1b2c;
+  --cor-texto-suave: #5d5a72;
+  --cor-fundo: #f6f5fb;
+  --cor-superficie: #ffffff;
+  --cor-borda: #dedbea;
+  --cor-erro: #c62828;
+  --cor-erro-fundo: #fdecec;
+  --cor-sucesso: #1b7f3b;
+  --cor-sucesso-fundo: #e8f6ec;
+  --cor-aviso: #8a5a00;
+  --cor-aviso-fundo: #fff4dc;
+
+  --espaco-1: 4px;
+  --espaco-2: 8px;
+  --espaco-3: 16px;
+  --espaco-4: 24px;
+  --espaco-5: 40px;
+
+  --raio: 10px;
+  --largura-maxima: 1080px;
+  --fonte: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0 0 var(--espaco-3);
+}
+
+a {
+  color: var(--cor-primaria);
+}
+
+/* Contêiner: até 1080px de largura, com 16px de margem lateral */
+.conteudo,
+.cabecalho-interno {
+  width: 100%;
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: 0 var(--espaco-3);
+}
+
+.conteudo {
+  padding-top: var(--espaco-4);
+  padding-bottom: var(--espaco-5);
+}
+
+/* Cabeçalho: no celular, o nome fica em cima e os links embaixo */
+.cabecalho {
+  background: var(--cor-superficie);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.cabecalho-interno {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  padding-top: var(--espaco-3);
+  padding-bottom: var(--espaco-3);
+}
+
+.cabecalho-marca {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+
+.cabecalho-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cabecalho-link {
+  display: inline-block;
+  padding: var(--espaco-1) var(--espaco-3);
+  border-radius: 999px;
+  color: var(--cor-texto-suave);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.cabecalho-link:hover {
+  color: var(--cor-primaria);
+}
+
+/* O NavLink aplica a classe "active" no link da tela atual */
+.cabecalho-link.active {
+  background: var(--cor-primaria);
+  color: #ffffff;
+}
+
+@media (min-width: 640px) {
+  .cabecalho-interno {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* Botões */
+.botao {
+  display: inline-block;
+  padding: 12px var(--espaco-4);
+  border: none;
+  border-radius: var(--raio);
+  background: var(--cor-primaria);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.botao:hover {
+  background: var(--cor-primaria-escura);
+}
+
+.botao:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.botao-secundario {
+  background: transparent;
+  color: var(--cor-primaria);
+  border: 1px solid var(--cor-primaria);
+}
+
+.botao-secundario:hover {
+  background: var(--cor-primaria);
+  color: #ffffff;
+}
+
+/* Mensagens */
+.mensagem {
+  padding: 12px var(--espaco-3);
+  border-radius: var(--raio);
+  margin: 0 0 var(--espaco-3);
+  overflow-wrap: anywhere;
+}
+
+.mensagem-erro {
+  background: var(--cor-erro-fundo);
+  color: var(--cor-erro);
+}
+
+.mensagem-sucesso {
+  background: var(--cor-sucesso-fundo);
+  color: var(--cor-sucesso);
+}
+
+.mensagem-aviso {
+  background: var(--cor-aviso-fundo);
+  color: var(--cor-aviso);
+}
+
+/* Página não encontrada */
+.nao-encontrada {
+  text-align: center;
+  padding: var(--espaco-5) 0;
+}

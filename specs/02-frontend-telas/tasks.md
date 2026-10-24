@@ -16,7 +16,7 @@
   - **Depende de:** —
   - **Commit sugerido:** `chore/frontend - estrutura inicial do frontend`
 
-- [ ] **T02: Rotas, layout, cabeçalho e página não encontrada**
+- [x] **T02: Rotas, layout, cabeçalho e página não encontrada**
   - **Descrição:** no `App.jsx`, montar as rotas do design (DT-02) dentro de uma rota de `Layout` (`Cabecalho` + `<Outlet />`): `/` → `Evento`, `/inscricao` → `Inscricao`, `/inscritos` → `Inscritos`, `*` → `NaoEncontrada`. Envolver o `App` no `BrowserRouter` no `main.jsx` e importar o `global.css` (variáveis, base, contêiner, cabeçalho mobile-first, botões e mensagens). Criar o `Cabecalho` com os três `NavLink`s ("Evento", "Inscrição", "Inscritos") e a `NaoEncontrada` com "Página não encontrada" e o link "Voltar para o início". As páginas `Evento`, `Inscricao` e `Inscritos` são criadas só com o título de cada tela, e ganham conteúdo nas próximas tarefas. Criar o helper `tests/renderizar.jsx` (renderiza o `App` num `MemoryRouter` na rota pedida) e `tests/navegacao.test.jsx`.
   - **Requisitos:** REQ-FE-01, REQ-FE-02, REQ-FE-03
   - **Arquivos:** `frontend/src/App.jsx` (alterar), `frontend/src/main.jsx` (alterar), `frontend/src/componentes/Layout.jsx` (criar), `frontend/src/componentes/Cabecalho.jsx` (criar), `frontend/src/paginas/Evento.jsx` (criar), `frontend/src/paginas/Inscricao.jsx` (criar), `frontend/src/paginas/Inscritos.jsx` (criar), `frontend/src/paginas/NaoEncontrada.jsx` (criar), `frontend/src/estilos/global.css` (criar), `frontend/tests/renderizar.jsx` (criar), `frontend/tests/navegacao.test.jsx` (criar)
@@ -100,9 +100,9 @@
 
 | Requisito | Tarefa(s)      | Teste(s) previsto(s)                                                                   | Status   |
 | --------- | -------------- | -------------------------------------------------------------------------------------- | -------- |
-| REQ-FE-01 | T02            | `navegacao.test.jsx` › "REQ-FE-01: ..."                                                | pendente |
-| REQ-FE-02 | T02            | `navegacao.test.jsx` › "REQ-FE-02: ..."                                                | pendente |
-| REQ-FE-03 | T02            | `navegacao.test.jsx` › "REQ-FE-03: ..."                                                | pendente |
+| REQ-FE-01 | T02            | `navegacao.test.jsx` › "REQ-FE-01: cada caminho mostra a sua tela"; "REQ-FE-01: os links do cabeçalho trocam de tela" | implementado |
+| REQ-FE-02 | T02            | `navegacao.test.jsx` › "REQ-FE-02: o cabeçalho com os links para as 3 telas aparece em todas elas" | implementado |
+| REQ-FE-03 | T02            | `navegacao.test.jsx` › "REQ-FE-03: caminho desconhecido mostra \"Página não encontrada\" e o link volta para o evento" | implementado |
 | REQ-FE-04 | T03            | `evento.test.jsx` › "REQ-FE-04: ..."                                                   | pendente |
 | REQ-FE-05 | T03            | `evento.test.jsx` › "REQ-FE-05: ..."                                                   | pendente |
 | REQ-FE-06 | T03            | `evento.test.jsx` › "REQ-FE-06: ..."                                                   | pendente |
