@@ -32,7 +32,7 @@
   - **Depende de:** T02
   - **Commit sugerido:** `feat(backend): lista as inscrições`
 
-- [ ] **T04: Criação de inscrição válida com normalização**
+- [x] **T04: Criação de inscrição válida com normalização**
   - **Descrição:** criar `validacao/inscricao.js` com `validarInscricao(corpo)`, que por enquanto normaliza (`trim` em nome/email/telefone, e-mail em minúsculas, telefone ausente/`null`/vazio → `""`) e devolve só os campos do modelo. Adicionar `POST /inscricoes`, que trata corpo vazio ou não-objeto como `{}`, chama a validação, cria no repositório e responde `201`. Criar `tests/criar.test.js` com os casos de sucesso.
   - **Requisitos:** REQ-BE-03, REQ-BE-04 (ids crescentes), REQ-BE-05, REQ-BE-11, REQ-BE-14
   - **Arquivos:** `backend/src/validacao/inscricao.js` (criar), `backend/src/routes/inscricoes.js` (alterar), `backend/tests/criar.test.js` (criar)
@@ -86,18 +86,18 @@
 | --------- | --------- | -------------------------------------------------------------- | -------- |
 | REQ-BE-01 | T03       | `listar.test.js` › "REQ-BE-01: lista todas as inscrições em ordem de criação, com status 200" | implementado |
 | REQ-BE-02 | T03       | `listar.test.js` › "REQ-BE-02: retorna 200 e um array vazio quando não há inscrições" | implementado |
-| REQ-BE-03 | T04       | `criar.test.js` › "REQ-BE-03: cria e retorna 201"              | pendente |
-| REQ-BE-04 | T04, T08  | `criar.test.js` › "REQ-BE-04: ids crescentes"; `remover.test.js` › "REQ-BE-04: não reaproveita o id" | pendente |
-| REQ-BE-05 | T04       | `criar.test.js` › "REQ-BE-05: normaliza espaços e e-mail"      | pendente |
+| REQ-BE-03 | T04       | `criar.test.js` › "REQ-BE-03: cria inscrição válida e retorna 201 com exatamente os campos do modelo" | implementado |
+| REQ-BE-04 | T04, T08  | `criar.test.js` › "REQ-BE-04: gera ids inteiros crescentes"; `remover.test.js` › "REQ-BE-04: não reaproveita o id" (T08) | parcial (falta T08) |
+| REQ-BE-05 | T04       | `criar.test.js` › "REQ-BE-05: remove espaços das pontas de nome, e-mail e telefone e guarda o e-mail em minúsculas" | implementado |
 | REQ-BE-06 | T07       | `criar.test.js` › "REQ-BE-06: e-mail já cadastrado"            | pendente |
 | REQ-BE-07 | T05       | `criar.test.js` › "REQ-BE-07: nome obrigatório"                | pendente |
 | REQ-BE-08 | T05       | `criar.test.js` › "REQ-BE-08: e-mail obrigatório"              | pendente |
 | REQ-BE-09 | T05       | `criar.test.js` › "REQ-BE-09: formato do e-mail"               | pendente |
 | REQ-BE-10 | T05       | `criar.test.js` › "REQ-BE-10: tipoIngresso inválido"           | pendente |
-| REQ-BE-11 | T04       | `criar.test.js` › "REQ-BE-11: telefone opcional"               | pendente |
+| REQ-BE-11 | T04       | `criar.test.js` › "REQ-BE-11: aceita telefone ausente, null ou só com espaços e guarda \"\"" | implementado |
 | REQ-BE-12 | T06       | `criar.test.js` › "REQ-BE-12: telefone inválido"               | pendente |
 | REQ-BE-13 | T05       | `criar.test.js` › "REQ-BE-13: lista todos os campos inválidos" | pendente |
-| REQ-BE-14 | T04       | `criar.test.js` › "REQ-BE-14: ignora campos extras"            | pendente |
+| REQ-BE-14 | T04       | `criar.test.js` › "REQ-BE-14: ignora campos extras enviados no corpo" | implementado |
 | REQ-BE-15 | T08       | `remover.test.js` › "REQ-BE-15: remove e retorna 204"          | pendente |
 | REQ-BE-16 | T08       | `remover.test.js` › "REQ-BE-16: id inexistente → 404"          | pendente |
 | REQ-BE-17 | T08       | `remover.test.js` › "REQ-BE-17: id inválido → 400"             | pendente |
