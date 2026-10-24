@@ -8,7 +8,7 @@
 
 ## Tarefas
 
-- [ ] **T01: Scaffolding do backend**
+- [x] **T01: Scaffolding do backend**
   - **Descrição:** criar a pasta `backend/` com o `package.json` (`"type": "module"`, scripts `dev`, `start` e `test` conforme DT-07, dependências `express@5` e `cors`, e de desenvolvimento `vitest` e `supertest`), o `vitest.config.js` (ambiente `node`, `passWithNoTests: true` para a suíte vazia não falhar) e o `.gitignore` ignorando `node_modules/`. Rodar `npm install`.
   - **Requisitos:** infraestrutura. Habilita todos os REQ-BE com verificação automática.
   - **Arquivos:** `backend/package.json` (criar), `backend/package-lock.json` (gerado), `backend/vitest.config.js` (criar), `backend/.gitignore` (criar)
