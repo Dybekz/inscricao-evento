@@ -80,7 +80,7 @@
   - **Depende de:** T02, T04
   - **Commit sugerido:** `feat/frontend - lista os inscritos`
 
-- [ ] **T10: Exclusão de inscrito**
+- [x] **T10: Exclusão de inscrito**
   - **Descrição:** ligar o botão "Excluir" ao fluxo de exclusão do design: limpar aviso e erro anteriores, `window.confirm("Excluir a inscrição de {nome}?")`, chamar `removerInscricao(id)` e tratar sucesso (remove a linha), `404` (remove e avisa "Essa inscrição já tinha sido excluída.") e outros erros (mensagem, lista inalterada). Se a lista ficar vazia, mostrar o estado de lista vazia.
   - **Requisitos:** REQ-FE-25, REQ-FE-26, REQ-FE-27, REQ-FE-28
   - **Arquivos:** `frontend/src/paginas/Inscritos.jsx` (alterar), `frontend/tests/inscritos.test.jsx` (alterar)
@@ -124,10 +124,10 @@
 | REQ-FE-22 | T09            | `inscritos.test.jsx` › "REQ-FE-22: mostra \"Carregando inscrições…\" enquanto a lista não chega"                                                | implementado |
 | REQ-FE-23 | T09            | `inscritos.test.jsx` › "REQ-FE-23: lista vazia mostra \"Nenhuma inscrição ainda\" com link para a inscrição"                                                | implementado |
 | REQ-FE-24 | T09            | `inscritos.test.jsx` › "REQ-FE-24: falha ao carregar mostra o erro e \"Tentar de novo\" busca a lista outra vez"; "REQ-FE-24: sem conexão com a API, mostra a mensagem de servidor fora do ar"                                                | implementado |
-| REQ-FE-25 | T10            | `inscritos.test.jsx` › "REQ-FE-25: ..."                                                | pendente |
-| REQ-FE-26 | T04, T10       | `api.test.js` › "REQ-FE-26: removerInscricao faz DELETE /inscricoes/:id"; `inscritos.test.jsx` › "REQ-FE-26: ..."              | parcial (T04) |
-| REQ-FE-27 | T04, T10       | `api.test.js` › "REQ-FE-27: status de erro vira ErroDaApi com status, mensagem e campos"; "REQ-FE-27: status de erro com corpo que não é JSON vira \"Erro inesperado do servidor\""; `inscritos.test.jsx` › "REQ-FE-27: ..."              | parcial (T04) |
-| REQ-FE-28 | T10            | `inscritos.test.jsx` › "REQ-FE-28: ..."                                                | pendente |
+| REQ-FE-25 | T10            | `inscritos.test.jsx` › "REQ-FE-25: pede confirmação com o nome e, se cancelar, não chama a API nem muda a tabela"                                                | implementado |
+| REQ-FE-26 | T04, T10       | `api.test.js` › "REQ-FE-26: removerInscricao faz DELETE /inscricoes/:id"; `inscritos.test.jsx` › "REQ-FE-26: ao confirmar, remove a linha sem recarregar e atualiza o contador"; "REQ-FE-26: ao excluir a última inscrição, mostra o estado de lista vazia"              | implementado |
+| REQ-FE-27 | T04, T10       | `api.test.js` › "REQ-FE-27: status de erro vira ErroDaApi com status, mensagem e campos"; "REQ-FE-27: status de erro com corpo que não é JSON vira \"Erro inesperado do servidor\""; `inscritos.test.jsx` › "REQ-FE-27: se a API responder 404, remove a linha e avisa que ela já tinha sido excluída"              | implementado |
+| REQ-FE-28 | T10            | `inscritos.test.jsx` › "REQ-FE-28: outro erro da API mostra a mensagem e mantém a tabela como estava"; "REQ-FE-28: sem conexão com a API, mostra a mensagem de servidor fora do ar e mantém a tabela"; "REQ-FE-28: a mensagem de uma exclusão anterior some na próxima tentativa"                                                | implementado |
 | REQ-FE-29 | T04, T11       | `api.test.js` › "REQ-FE-29: sem VITE_API_URL, as chamadas vão para http://localhost:3001" (URL padrão); manual (`VITE_API_URL`)                 | parcial (T04) |
 | REQ-FE-30 | T01, T11       | manual                                                                                 | pendente |
 | REQ-FE-31 | T03, T11       | manual                                                                                 | pendente |

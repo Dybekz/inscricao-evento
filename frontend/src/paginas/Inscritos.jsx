@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
-import { listarInscricoes } from '../api/inscricoes.js';
-import { ErroDeConexao, MENSAGEM_SEM_CONEXAO } from '../api/erros.js';
+import { listarInscricoes, removerInscricao } from '../api/inscricoes.js';
+import { ErroDaApi, ErroDeConexao, MENSAGEM_SEM_CONEXAO } from '../api/erros.js';
 import '../estilos/inscritos.css';
 
 const NOMES_DOS_TIPOS = { estudante: 'Estudante', profissional: 'Profissional' };
@@ -11,6 +11,8 @@ export default function Inscritos() {
   const [situacao, setSituacao] = useState('carregando');
   const [inscricoes, setInscricoes] = useState([]);
   const [erroCarregar, setErroCarregar] = useState('');
+  const [aviso, setAviso] = useState('');
+  const [erroExcluir, setErroExcluir] = useState('');
 
   async function carregar() {
     setSituacao('carregando');
@@ -20,6 +22,33 @@ export default function Inscritos() {
     } catch (erro) {
       setErroCarregar(erro instanceof ErroDeConexao ? MENSAGEM_SEM_CONEXAO : 'Não foi possível carregar as inscrições.');
       setSituacao('erro');
+    }
+  }
+
+  async function excluir(inscricao) {
+    setAviso('');
+    setErroExcluir('');
+
+    if (!window.confirm(`Excluir a inscrição de ${inscricao.nome}?`)) {
+      return;
+    }
+
+    // O contador é derivado do tamanho da lista, então se atualiza junto
+    const tirarDaLista = () => setInscricoes((anteriores) => anteriores.filter((item) => item.id !== inscricao.id));
+
+    try {
+      await removerInscricao(inscricao.id);
+      tirarDaLista();
+    } catch (erro) {
+      if (erro instanceof ErroDaApi && erro.status === 404) {
+        // Já tinha sido excluída (por exemplo, em outra aba): some da lista do mesmo jeito
+        tirarDaLista();
+        setAviso('Essa inscrição já tinha sido excluída.');
+      } else {
+        setErroExcluir(
+          erro instanceof ErroDeConexao ? MENSAGEM_SEM_CONEXAO : 'Não foi possível excluir a inscrição. Tente de novo.',
+        );
+      }
     }
   }
 
@@ -43,6 +72,18 @@ export default function Inscritos() {
             Tentar de novo
           </button>
         </div>
+      )}
+
+      {situacao === 'pronto' && aviso && (
+        <p role="status" className="mensagem mensagem-aviso">
+          {aviso}
+        </p>
+      )}
+
+      {situacao === 'pronto' && erroExcluir && (
+        <p role="alert" className="mensagem mensagem-erro">
+          {erroExcluir}
+        </p>
       )}
 
       {situacao === 'pronto' && inscricoes.length === 0 && (
@@ -80,8 +121,7 @@ export default function Inscritos() {
                     <td>{inscricao.telefone || '—'}</td>
                     <td>{NOMES_DOS_TIPOS[inscricao.tipoIngresso] ?? inscricao.tipoIngresso}</td>
                     <td>
-                      {/* A exclusão entra na T10 */}
-                      <button type="button" className="inscritos-excluir">
+                      <button type="button" className="inscritos-excluir" onClick={() => excluir(inscricao)}>
                         Excluir
                       </button>
                     </td>

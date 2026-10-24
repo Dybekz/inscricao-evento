@@ -1,7 +1,7 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { screen, within } from '@testing-library/react';
 import { renderizar } from './renderizar.jsx';
-import { listarInscricoes } from '../src/api/inscricoes.js';
+import { listarInscricoes, removerInscricao } from '../src/api/inscricoes.js';
 import { ErroDaApi, ErroDeConexao, MENSAGEM_SEM_CONEXAO } from '../src/api/erros.js';
 
 // A API é simulada: nenhum teste de tela faz requisição de verdade (DT-10)
@@ -95,5 +95,114 @@ describe('tela de inscritos', () => {
 
     expect(await screen.findByRole('alert')).toHaveTextContent(MENSAGEM_SEM_CONEXAO);
     expect(screen.getByRole('button', { name: 'Tentar de novo' })).toBeInTheDocument();
+  });
+
+  describe('exclusão', () => {
+    let confirmar;
+
+    beforeEach(() => {
+      listarInscricoes.mockResolvedValue([maria, joao]);
+      // O jsdom não tem uma caixa de confirmação de verdade, então ela é sempre simulada (DT-08)
+      confirmar = vi.spyOn(window, 'confirm').mockReturnValue(true);
+    });
+
+    afterEach(() => {
+      confirmar.mockRestore();
+    });
+
+    // Abre a tela, espera a tabela e clica em "Excluir" na linha da pessoa pedida
+    async function clicarEmExcluir(nome) {
+      const { usuario } = renderizar('/inscritos');
+      const linhas = await linhasDaTabela();
+      const linha = linhas.find((item) => within(item).queryByText(nome));
+
+      await usuario.click(within(linha).getByRole('button', { name: 'Excluir' }));
+      return usuario;
+    }
+
+    function nomesNaTabela() {
+      const tabela = screen.queryByRole('table');
+      if (!tabela) {
+        return [];
+      }
+      return within(tabela)
+        .getAllByRole('row')
+        .slice(1)
+        .map((linha) => within(linha).getAllByRole('cell')[0].textContent);
+    }
+
+    it('REQ-FE-25: pede confirmação com o nome e, se cancelar, não chama a API nem muda a tabela', async () => {
+      confirmar.mockReturnValue(false);
+
+      await clicarEmExcluir('Maria Silva');
+
+      expect(confirmar).toHaveBeenCalledWith('Excluir a inscrição de Maria Silva?');
+      expect(removerInscricao).not.toHaveBeenCalled();
+      expect(nomesNaTabela()).toEqual(['Maria Silva', 'João Souza']);
+      expect(screen.getByText('2 inscritos')).toBeInTheDocument();
+    });
+
+    it('REQ-FE-26: ao confirmar, remove a linha sem recarregar e atualiza o contador', async () => {
+      removerInscricao.mockResolvedValue(undefined);
+
+      await clicarEmExcluir('Maria Silva');
+
+      expect(removerInscricao).toHaveBeenCalledWith(1);
+      expect(await screen.findByText('1 inscrito')).toBeInTheDocument();
+      expect(nomesNaTabela()).toEqual(['João Souza']);
+      expect(listarInscricoes).toHaveBeenCalledTimes(1);
+    });
+
+    it('REQ-FE-26: ao excluir a última inscrição, mostra o estado de lista vazia', async () => {
+      listarInscricoes.mockResolvedValue([maria]);
+      removerInscricao.mockResolvedValue(undefined);
+
+      await clicarEmExcluir('Maria Silva');
+
+      expect(await screen.findByText('Nenhuma inscrição ainda')).toBeInTheDocument();
+      expect(screen.queryByRole('table')).not.toBeInTheDocument();
+    });
+
+    it('REQ-FE-27: se a API responder 404, remove a linha e avisa que ela já tinha sido excluída', async () => {
+      removerInscricao.mockRejectedValue(new ErroDaApi(404, 'Inscrição não encontrada'));
+
+      await clicarEmExcluir('João Souza');
+
+      expect(await screen.findByRole('status')).toHaveTextContent('Essa inscrição já tinha sido excluída.');
+      expect(nomesNaTabela()).toEqual(['Maria Silva']);
+      expect(screen.getByText('1 inscrito')).toBeInTheDocument();
+    });
+
+    it('REQ-FE-28: outro erro da API mostra a mensagem e mantém a tabela como estava', async () => {
+      removerInscricao.mockRejectedValue(new ErroDaApi(500, 'Erro interno do servidor'));
+
+      await clicarEmExcluir('Maria Silva');
+
+      expect(await screen.findByRole('alert')).toHaveTextContent('Não foi possível excluir a inscrição. Tente de novo.');
+      expect(nomesNaTabela()).toEqual(['Maria Silva', 'João Souza']);
+      expect(screen.getByText('2 inscritos')).toBeInTheDocument();
+    });
+
+    it('REQ-FE-28: sem conexão com a API, mostra a mensagem de servidor fora do ar e mantém a tabela', async () => {
+      removerInscricao.mockRejectedValue(new ErroDeConexao());
+
+      await clicarEmExcluir('Maria Silva');
+
+      expect(await screen.findByRole('alert')).toHaveTextContent(MENSAGEM_SEM_CONEXAO);
+      expect(nomesNaTabela()).toEqual(['Maria Silva', 'João Souza']);
+    });
+
+    it('REQ-FE-28: a mensagem de uma exclusão anterior some na próxima tentativa', async () => {
+      removerInscricao.mockRejectedValueOnce(new ErroDeConexao()).mockResolvedValueOnce(undefined);
+
+      const usuario = await clicarEmExcluir('Maria Silva');
+      expect(await screen.findByRole('alert')).toBeInTheDocument();
+
+      const linha = (await linhasDaTabela()).find((item) => within(item).queryByText('Maria Silva'));
+      await usuario.click(within(linha).getByRole('button', { name: 'Excluir' }));
+
+      expect(await screen.findByText('1 inscrito')).toBeInTheDocument();
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    });
   });
 });
