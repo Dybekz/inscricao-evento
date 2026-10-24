@@ -5,7 +5,8 @@ import inscricoesRouter from './routes/inscricoes.js';
 const app = express();
 
 app.use(cors({ origin: 'http://localhost:5173', methods: ['GET', 'POST', 'DELETE'] }));
-app.use(express.json());
+// strict: false aceita JSON válido que não é objeto ("abc", 123, null); a rota trata como {} (D-12)
+app.use(express.json({ strict: false }));
 
 app.use('/inscricoes', inscricoesRouter);
 

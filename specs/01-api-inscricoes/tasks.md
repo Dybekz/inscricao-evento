@@ -80,7 +80,7 @@
   - **Depende de:** T06, T07, T08
   - **Commit sugerido:** `test(backend): confere erros em json e testa porta e memória`
 
-- [ ] **T10: Correções da revisão (corpo JSON que não é objeto)**
+- [x] **T10: Correções da revisão (corpo JSON que não é objeto)**
   - **Descrição:** o `express.json()` está no modo estrito padrão e recusa corpos que são JSON válido mas primitivos (`"abc"`, `123`, `null`) como "não é um JSON válido", enquanto o design manda tratar todo JSON válido que não é objeto como `{}` e cair na validação dos obrigatórios. Trocar para `express.json({ strict: false })`. Em `tests/geral.test.js`, acrescentar um teste para esses corpos e completar o teste de REQ-BE-18 conferindo que o GET continua `[]` depois do corpo malformado.
   - **Requisitos:** REQ-BE-18, REQ-BE-13
   - **Arquivos:** `backend/src/app.js` (alterar), `backend/tests/geral.test.js` (alterar)
@@ -104,12 +104,12 @@
 | REQ-BE-10 | T05       | `criar.test.js` › "REQ-BE-10: retorna 400 com campos.tipoIngresso para ausente, valor fora da lista ou com maiúsculas" | conforme |
 | REQ-BE-11 | T04       | `criar.test.js` › "REQ-BE-11: aceita telefone ausente, null ou só com espaços e guarda \"\"" | conforme |
 | REQ-BE-12 | T06       | `criar.test.js` › "REQ-BE-12: retorna 400 com campos.telefone para letras, símbolos, número não-texto e quantidade errada de dígitos" | conforme |
-| REQ-BE-13 | T05, T10  | `criar.test.js` › "REQ-BE-13: informa todos os campos inválidos na mesma resposta e não cria a inscrição"; "REQ-BE-13: corpo vazio retorna os três campos obrigatórios" | lacuna (T10) |
+| REQ-BE-13 | T05, T10  | `criar.test.js` › "REQ-BE-13: informa todos os campos inválidos na mesma resposta e não cria a inscrição"; "REQ-BE-13: corpo vazio retorna os três campos obrigatórios"; `geral.test.js` › "REQ-BE-13: corpo JSON que não é objeto cai na validação dos campos" | conforme |
 | REQ-BE-14 | T04       | `criar.test.js` › "REQ-BE-14: ignora campos extras enviados no corpo" | conforme |
 | REQ-BE-15 | T08       | `remover.test.js` › "REQ-BE-15: remove a inscrição existente, retorna 204 sem corpo e ela some do GET" | conforme |
 | REQ-BE-16 | T08       | `remover.test.js` › "REQ-BE-16: retorna 404 em JSON para id inteiro que não existe" | conforme |
 | REQ-BE-17 | T08       | `remover.test.js` › "REQ-BE-17: retorna 400 em JSON para id que não é inteiro positivo" | conforme |
-| REQ-BE-18 | T02, T10  | `geral.test.js` › "REQ-BE-18: retorna 400 em JSON quando o corpo não é um JSON válido" | lacuna (T10) |
+| REQ-BE-18 | T02, T10  | `geral.test.js` › "REQ-BE-18: retorna 400 em JSON quando o corpo não é um JSON válido e não cria a inscrição" | conforme |
 | REQ-BE-19 | T02       | `geral.test.js` › "REQ-BE-19: libera CORS para o frontend em http://localhost:5173"; "REQ-BE-19: responde ao preflight com os métodos GET, POST e DELETE" | conforme |
 | REQ-BE-20 | T02, T09  | manual em 2026-10-24: sem `PORT` → log "API rodando em http://localhost:3001" e GET respondeu `[]`; com `PORT=4000` → respondeu na 4000 e a 3001 ficou sem resposta | verificado |
 | REQ-BE-21 | T03, T09  | manual em 2026-10-24: POST criou id 1 e GET listou; servidor reiniciado → GET `[]` e novo POST recebeu id 1 | verificado |

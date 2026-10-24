@@ -8,7 +8,7 @@ describe('comportamento geral da API', () => {
     resetar();
   });
 
-  it('REQ-BE-18: retorna 400 em JSON quando o corpo não é um JSON válido', async () => {
+  it('REQ-BE-18: retorna 400 em JSON quando o corpo não é um JSON válido e não cria a inscrição', async () => {
     const res = await request(app)
       .post('/inscricoes')
       .set('Content-Type', 'application/json')
@@ -17,6 +17,25 @@ describe('comportamento geral da API', () => {
     expect(res.status).toBe(400);
     expect(res.headers['content-type']).toMatch(/application\/json/);
     expect(res.body).toEqual({ erro: 'O corpo da requisição não é um JSON válido' });
+
+    const lista = await request(app).get('/inscricoes');
+    expect(lista.body).toEqual([]);
+  });
+
+  it('REQ-BE-13: corpo JSON que não é objeto cai na validação dos campos', async () => {
+    for (const corpo of ['[1,2]', '"abc"', '123', 'null']) {
+      const res = await request(app)
+        .post('/inscricoes')
+        .set('Content-Type', 'application/json')
+        .send(corpo);
+
+      expect(res.status).toBe(400);
+      expect(res.body.erro).toBe('Dados inválidos');
+      expect(Object.keys(res.body.campos)).toEqual(['nome', 'email', 'tipoIngresso']);
+    }
+
+    const lista = await request(app).get('/inscricoes');
+    expect(lista.body).toEqual([]);
   });
 
   it('REQ-BE-19: libera CORS para o frontend em http://localhost:5173', async () => {
