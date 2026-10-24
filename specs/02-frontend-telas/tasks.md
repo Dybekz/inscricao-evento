@@ -8,7 +8,7 @@
 
 ## Tarefas
 
-- [ ] **T01: Scaffolding do frontend**
+- [x] **T01: Scaffolding do frontend**
   - **Descrição:** criar a pasta `frontend/` com o `package.json` (`"type": "module"`, scripts `dev`, `build` e `test` conforme o design; dependências `react`, `react-dom` e `react-router`; de desenvolvimento `vite`, `@vitejs/plugin-react`, `vitest` na mesma versão principal do backend, `jsdom`, `@testing-library/react`, `@testing-library/user-event` e `@testing-library/jest-dom`). Criar o `vite.config.js` com o plugin do React, `server: { port: 5173, strictPort: true }` (DT-09) e o bloco `test` (ambiente `jsdom`, `setupFiles: './tests/setup.js'`, `passWithNoTests: true`). Criar o `tests/setup.js` (jest-dom e limpeza do DOM depois de cada teste), o `index.html` (`lang="pt-BR"`, `<meta name="viewport">`, título "Conecta Tech 2027"), o `.gitignore` (`node_modules/` e `dist/`) e um `src/main.jsx` mínimo, que renderiza o `App`, e um `src/App.jsx` provisório com o título do evento. Rodar `npm install`.
   - **Requisitos:** infraestrutura. Habilita todos os REQ-FE automáticos; prepara REQ-FE-30 (porta fixa), conferido em T11.
   - **Arquivos:** `frontend/package.json` (criar), `frontend/package-lock.json` (gerado), `frontend/vite.config.js` (criar), `frontend/index.html` (criar), `frontend/.gitignore` (criar), `frontend/tests/setup.js` (criar), `frontend/src/main.jsx` (criar), `frontend/src/App.jsx` (criar)
