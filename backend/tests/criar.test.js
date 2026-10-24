@@ -132,6 +132,42 @@ describe('POST /inscricoes', () => {
     expect(lista.body).toEqual([]);
   });
 
+  it('REQ-BE-12: retorna 400 com campos.telefone para letras, símbolos, número não-texto e quantidade errada de dígitos', async () => {
+    const mensagem = 'Informe um telefone com DDD (10 ou 11 dígitos)';
+    const telefonesInvalidos = [
+      'abc',
+      '4999-abcd',
+      '+55 49 99969-2146',
+      '49.99969.2146',
+      11999999999,
+      '499996921',
+      '554999692146',
+    ];
+
+    for (const telefone of telefonesInvalidos) {
+      await esperarErroNoCampo({ ...inscricaoValida, telefone }, 'telefone', mensagem);
+    }
+  });
+
+  it('REQ-BE-23: guarda o telefone formatado, independentemente de como foi digitado', async () => {
+    const casos = [
+      ['49999692146', '(49) 99969-2146'],
+      ['(49)99969-2146', '(49) 99969-2146'],
+      ['49 99969 2146', '(49) 99969-2146'],
+      ['(49) 99969-2146', '(49) 99969-2146'],
+      ['4933334444', '(49) 3333-4444'],
+    ];
+
+    for (const [indice, [digitado, esperado]] of casos.entries()) {
+      const res = await request(app)
+        .post('/inscricoes')
+        .send({ ...inscricaoValida, email: `pessoa${indice}@email.com`, telefone: digitado });
+
+      expect(res.status).toBe(201);
+      expect(res.body.telefone).toBe(esperado);
+    }
+  });
+
   it('REQ-BE-13: corpo vazio retorna os três campos obrigatórios', async () => {
     const res = await request(app).post('/inscricoes');
 

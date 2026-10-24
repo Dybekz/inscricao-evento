@@ -1,8 +1,25 @@
 const TIPOS_DE_INGRESSO = ['estudante', 'profissional'];
 const FORMATO_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const CARACTERES_DE_TELEFONE = /^[\d\s()-]+$/;
 
 function aparar(valor) {
   return typeof valor === 'string' ? valor.trim() : valor;
+}
+
+// 11 dígitos → (DD) NNNNN-NNNN; 10 dígitos → (DD) NNNN-NNNN
+function formatarTelefone(digitos) {
+  const ddd = digitos.slice(0, 2);
+  const numero = digitos.slice(2);
+  const corte = numero.length - 4;
+  return `(${ddd}) ${numero.slice(0, corte)}-${numero.slice(corte)}`;
+}
+
+function telefoneValido(telefone) {
+  if (typeof telefone !== 'string' || !CARACTERES_DE_TELEFONE.test(telefone)) {
+    return false;
+  }
+  const digitos = telefone.replace(/\D/g, '');
+  return digitos.length === 10 || digitos.length === 11;
 }
 
 function textoPreenchido(valor) {
@@ -31,6 +48,15 @@ export function validarInscricao(corpo) {
     campos.email = 'O e-mail é obrigatório';
   } else if (!FORMATO_EMAIL.test(dados.email)) {
     campos.email = 'Informe um e-mail válido';
+  }
+
+  // Telefone é opcional: só é validado e formatado quando informado
+  if (dados.telefone !== '') {
+    if (telefoneValido(dados.telefone)) {
+      dados.telefone = formatarTelefone(dados.telefone.replace(/\D/g, ''));
+    } else {
+      campos.telefone = 'Informe um telefone com DDD (10 ou 11 dígitos)';
+    }
   }
 
   if (!TIPOS_DE_INGRESSO.includes(dados.tipoIngresso)) {

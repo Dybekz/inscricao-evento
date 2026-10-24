@@ -48,7 +48,7 @@
   - **Depende de:** T04
   - **Commit sugerido:** `feat(backend): valida os campos da inscrição`
 
-- [ ] **T06: Validação e formatação do telefone**
+- [x] **T06: Validação e formatação do telefone**
   - **Descrição:** em `validarInscricao`, quando o telefone for informado: recusar se não for string, se tiver caracteres fora de `^[\d\s()-]+$` ou se não tiver 10 ou 11 dígitos; caso válido, formatar como `(DD) NNNNN-NNNN` ou `(DD) NNNN-NNNN` (seção "Formatação do telefone" do design).
   - **Requisitos:** REQ-BE-12, REQ-BE-23
   - **Arquivos:** `backend/src/validacao/inscricao.js` (alterar), `backend/tests/criar.test.js` (alterar)
@@ -95,7 +95,7 @@
 | REQ-BE-09 | T05       | `criar.test.js` › "REQ-BE-09: retorna 400 com campos.email para e-mail fora do formato texto@texto.texto" | implementado |
 | REQ-BE-10 | T05       | `criar.test.js` › "REQ-BE-10: retorna 400 com campos.tipoIngresso para ausente, valor fora da lista ou com maiúsculas" | implementado |
 | REQ-BE-11 | T04       | `criar.test.js` › "REQ-BE-11: aceita telefone ausente, null ou só com espaços e guarda \"\"" | implementado |
-| REQ-BE-12 | T06       | `criar.test.js` › "REQ-BE-12: telefone inválido"               | pendente |
+| REQ-BE-12 | T06       | `criar.test.js` › "REQ-BE-12: retorna 400 com campos.telefone para letras, símbolos, número não-texto e quantidade errada de dígitos" | implementado |
 | REQ-BE-13 | T05       | `criar.test.js` › "REQ-BE-13: informa todos os campos inválidos na mesma resposta e não cria a inscrição"; "REQ-BE-13: corpo vazio retorna os três campos obrigatórios" | implementado |
 | REQ-BE-14 | T04       | `criar.test.js` › "REQ-BE-14: ignora campos extras enviados no corpo" | implementado |
 | REQ-BE-15 | T08       | `remover.test.js` › "REQ-BE-15: remove e retorna 204"          | pendente |
@@ -106,7 +106,7 @@
 | REQ-BE-20 | T02, T09  | manual (T09); porta 3001 padrão conferida na T02               | parcial (falta T09) |
 | REQ-BE-21 | T03, T09  | manual (T09); repositório em memória criado na T03             | parcial (falta T09) |
 | REQ-BE-22 | T02, T09  | `geral.test.js` › "REQ-BE-22: retorna 404 em JSON, em português, para rota inexistente"; "REQ-BE-22: erros dos endpoints em JSON" (T09) | parcial (falta T09) |
-| REQ-BE-23 | T06       | `criar.test.js` › "REQ-BE-23: formata o telefone"              | pendente |
+| REQ-BE-23 | T06       | `criar.test.js` › "REQ-BE-23: guarda o telefone formatado, independentemente de como foi digitado" | implementado |
 
 ## Registro de revisão
 
