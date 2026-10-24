@@ -15,9 +15,13 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   // Corpo vazio, ausente ou que não é objeto é tratado como {} (D-12)
   const corpo = ehObjeto(req.body) ? req.body : {};
-  const { dados } = validarInscricao(corpo);
+  const resultado = validarInscricao(corpo);
 
-  const inscricao = repositorio.criar(dados);
+  if (!resultado.valido) {
+    return res.status(400).json({ erro: 'Dados inválidos', campos: resultado.campos });
+  }
+
+  const inscricao = repositorio.criar(resultado.dados);
   res.status(201).json(inscricao);
 });
 
