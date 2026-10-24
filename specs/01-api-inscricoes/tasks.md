@@ -56,7 +56,7 @@
   - **Depende de:** T05
   - **Commit sugerido:** `feat(backend): valida e formata o telefone`
 
-- [ ] **T07: Bloqueio de e-mail duplicado**
+- [x] **T07: Bloqueio de e-mail duplicado**
   - **Descrição:** no `POST`, depois da validação dos campos, usar `buscarPorEmail` com o e-mail normalizado e responder `400` com `{ "erro": "E-mail já cadastrado" }` se já existir.
   - **Requisitos:** REQ-BE-06
   - **Arquivos:** `backend/src/routes/inscricoes.js` (alterar), `backend/tests/criar.test.js` (alterar)
@@ -89,7 +89,7 @@
 | REQ-BE-03 | T04       | `criar.test.js` › "REQ-BE-03: cria inscrição válida e retorna 201 com exatamente os campos do modelo" | implementado |
 | REQ-BE-04 | T04, T08  | `criar.test.js` › "REQ-BE-04: gera ids inteiros crescentes"; `remover.test.js` › "REQ-BE-04: não reaproveita o id" (T08) | parcial (falta T08) |
 | REQ-BE-05 | T04       | `criar.test.js` › "REQ-BE-05: remove espaços das pontas de nome, e-mail e telefone e guarda o e-mail em minúsculas" | implementado |
-| REQ-BE-06 | T07       | `criar.test.js` › "REQ-BE-06: e-mail já cadastrado"            | pendente |
+| REQ-BE-06 | T07       | `criar.test.js` › "REQ-BE-06: retorna 400 com \"E-mail já cadastrado\" para e-mail repetido, mesmo com maiúsculas e espaços" | implementado |
 | REQ-BE-07 | T05       | `criar.test.js` › "REQ-BE-07: retorna 400 com campos.nome para nome ausente, vazio, só espaços ou não-texto" | implementado |
 | REQ-BE-08 | T05       | `criar.test.js` › "REQ-BE-08: retorna 400 com campos.email para e-mail ausente, vazio ou não-texto" | implementado |
 | REQ-BE-09 | T05       | `criar.test.js` › "REQ-BE-09: retorna 400 com campos.email para e-mail fora do formato texto@texto.texto" | implementado |

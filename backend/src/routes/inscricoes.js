@@ -21,6 +21,11 @@ router.post('/', (req, res) => {
     return res.status(400).json({ erro: 'Dados inválidos', campos: resultado.campos });
   }
 
+  // O e-mail já vem normalizado (sem espaços e em minúsculas) da validação
+  if (repositorio.buscarPorEmail(resultado.dados.email)) {
+    return res.status(400).json({ erro: 'E-mail já cadastrado' });
+  }
+
   const inscricao = repositorio.criar(resultado.dados);
   res.status(201).json(inscricao);
 });

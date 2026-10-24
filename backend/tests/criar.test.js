@@ -168,6 +168,23 @@ describe('POST /inscricoes', () => {
     }
   });
 
+  it('REQ-BE-06: retorna 400 com "E-mail já cadastrado" para e-mail repetido, mesmo com maiúsculas e espaços', async () => {
+    await request(app).post('/inscricoes').send(inscricaoValida);
+
+    for (const email of ['maria@email.com', '  MARIA@Email.com ']) {
+      const res = await request(app)
+        .post('/inscricoes')
+        .send({ ...inscricaoValida, nome: 'Outra Pessoa', email });
+
+      expect(res.status).toBe(400);
+      expect(res.body).toEqual({ erro: 'E-mail já cadastrado' });
+    }
+
+    const lista = await request(app).get('/inscricoes');
+    expect(lista.body).toHaveLength(1);
+    expect(lista.body[0].nome).toBe('Maria Silva');
+  });
+
   it('REQ-BE-13: corpo vazio retorna os três campos obrigatórios', async () => {
     const res = await request(app).post('/inscricoes');
 
