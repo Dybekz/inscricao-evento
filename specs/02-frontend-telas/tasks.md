@@ -88,7 +88,7 @@
   - **Depende de:** T09
   - **Commit sugerido:** `feat/frontend - exclui inscrito`
 
-- [ ] **T11: Verificações manuais com a API rodando**
+- [x] **T11: Verificações manuais com a API rodando**
   - **Descrição:** com o backend e o frontend rodando juntos, conferir manualmente: REQ-FE-29 (com `VITE_API_URL` apontando para o backend em outra porta, as chamadas vão para ela); REQ-FE-30 (com a 5173 ocupada, `npm run dev` para com erro); REQ-FE-31 (tela do evento em 360px, 640px, 960px e 1280px, sem rolagem horizontal); REQ-FE-32 (inscrição e inscritos em 360px, tabela rolando na própria área); REQ-FE-33 (textos em português em todas as telas e estados). Fazer também uma inscrição e uma exclusão de ponta a ponta. Registrar o resultado na matriz.
   - **Requisitos:** REQ-FE-29, REQ-FE-30, REQ-FE-31, REQ-FE-32, REQ-FE-33
   - **Arquivos:** `specs/02-frontend-telas/tasks.md` (alterar)
@@ -128,11 +128,13 @@
 | REQ-FE-26 | T04, T10       | `api.test.js` › "REQ-FE-26: removerInscricao faz DELETE /inscricoes/:id"; `inscritos.test.jsx` › "REQ-FE-26: ao confirmar, remove a linha sem recarregar e atualiza o contador"; "REQ-FE-26: ao excluir a última inscrição, mostra o estado de lista vazia"              | implementado |
 | REQ-FE-27 | T04, T10       | `api.test.js` › "REQ-FE-27: status de erro vira ErroDaApi com status, mensagem e campos"; "REQ-FE-27: status de erro com corpo que não é JSON vira \"Erro inesperado do servidor\""; `inscritos.test.jsx` › "REQ-FE-27: se a API responder 404, remove a linha e avisa que ela já tinha sido excluída"              | implementado |
 | REQ-FE-28 | T10            | `inscritos.test.jsx` › "REQ-FE-28: outro erro da API mostra a mensagem e mantém a tabela como estava"; "REQ-FE-28: sem conexão com a API, mostra a mensagem de servidor fora do ar e mantém a tabela"; "REQ-FE-28: a mensagem de uma exclusão anterior some na próxima tentativa"                                                | implementado |
-| REQ-FE-29 | T04, T11       | `api.test.js` › "REQ-FE-29: sem VITE_API_URL, as chamadas vão para http://localhost:3001" (URL padrão); manual (`VITE_API_URL`)                 | parcial (T04) |
-| REQ-FE-30 | T01, T11       | manual                                                                                 | pendente |
-| REQ-FE-31 | T03, T11       | manual                                                                                 | pendente |
-| REQ-FE-32 | T06, T09, T11  | manual                                                                                 | pendente |
-| REQ-FE-33 | T11            | manual                                                                                 | pendente |
+| REQ-FE-29 | T04, T11       | `api.test.js` › "REQ-FE-29: sem VITE_API_URL, as chamadas vão para http://localhost:3001" (URL padrão); manual em 2026-10-24: com `VITE_API_URL=http://localhost:4000`, o Vite entregou `"VITE_API_URL": "http://localhost:4000"` ao navegador; sem a variável, o módulo usa `http://localhost:3001`                 | verificado |
+| REQ-FE-30 | T01, T11       | manual em 2026-10-24: com a 5173 ocupada, `npx vite` parou com "Error: Port 5173 is already in use" (código 1), sem trocar de porta                                                                                 | verificado |
+| REQ-FE-31 | T03, T11       | manual em 2026-10-24 (usuária, DevTools): tela do evento em 360, 640, 960 e 1280px com palestrantes em 1, 2, 4 e 4 colunas e sem rolagem horizontal (`scrollWidth > clientWidth` → `false`)                                                                                 | verificado |
+| REQ-FE-32 | T06, T09, T11  | manual em 2026-10-24 (usuária, DevTools): inscrição e inscritos em 360px sem rolagem horizontal da página; a tabela rola dentro da própria área                                                                                 | verificado |
+| REQ-FE-33 | T11            | manual em 2026-10-24: varredura dos textos do código sem nada em inglês; usuária percorreu as telas e estados e confirmou tudo em português (exceto "OK"/"Cancelar" da confirmação, que são do navegador)                                                                                 | verificado |
+
+Verificação de ponta a ponta (T11, 2026-10-24): suítes do backend (26/26) e do frontend (50/50) passando. Pelo HTTP, com a origem do front: inscrição criada (201, telefone formatado), e-mail repetido recusado com "E-mail já cadastrado" (400), exclusão (204) e nova exclusão da mesma inscrição (404). Pela tela, confirmado pela usuária: confirmação de inscrição, "E-mail já cadastrado" junto ao campo e exclusão com confirmação.
 
 ## Registro de revisão
 
