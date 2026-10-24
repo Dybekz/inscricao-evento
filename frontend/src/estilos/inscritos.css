@@ -1,0 +1,78 @@
+/* Tela de inscritos: a página nunca rola para os lados; só a tabela, dentro da própria área */
+
+.inscritos-contador {
+  margin: 0 0 var(--espaco-3);
+  color: var(--cor-texto-suave);
+  font-weight: 600;
+}
+
+.inscritos-falha,
+.inscritos-vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--espaco-3);
+}
+
+.inscritos-falha .mensagem {
+  margin: 0;
+}
+
+.inscritos-vazio p {
+  margin: 0;
+  color: var(--cor-texto-suave);
+}
+
+.inscritos-rolagem {
+  overflow-x: auto;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+}
+
+.inscritos-rolagem:focus-visible {
+  outline: 2px solid var(--cor-primaria);
+  outline-offset: 2px;
+}
+
+.inscritos-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+.inscritos-tabela th,
+.inscritos-tabela td {
+  padding: 12px var(--espaco-3);
+  text-align: left;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.inscritos-tabela th {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--cor-texto-suave);
+  background: var(--cor-fundo);
+}
+
+.inscritos-tabela tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.inscritos-excluir {
+  padding: 6px 12px;
+  border: 1px solid var(--cor-erro);
+  border-radius: var(--raio);
+  background: transparent;
+  color: var(--cor-erro);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.inscritos-excluir:hover {
+  background: var(--cor-erro);
+  color: #ffffff;
+}

@@ -1,6 +1,10 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { screen, within } from '@testing-library/react';
 import { renderizar } from './renderizar.jsx';
+import { listarInscricoes } from '../src/api/inscricoes.js';
+
+// A tela de inscritos busca a lista ao abrir; aqui a API é simulada devolvendo uma lista vazia (DT-10)
+vi.mock('../src/api/inscricoes.js');
 
 const telas = [
   { caminho: '/', titulo: 'Conecta Tech 2027' },
@@ -17,6 +21,11 @@ function menu() {
 }
 
 describe('navegação', () => {
+  beforeEach(() => {
+    vi.resetAllMocks();
+    listarInscricoes.mockResolvedValue([]);
+  });
+
   it('REQ-FE-01: cada caminho mostra a sua tela', () => {
     for (const { caminho, titulo } of telas) {
       const { unmount } = renderizar(caminho);

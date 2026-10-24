@@ -72,7 +72,7 @@
   - **Depende de:** T07
   - **Commit sugerido:** `feat/frontend - mostra os erros da api no formulário`
 
-- [ ] **T09: Lista de inscritos e estados da tela**
+- [x] **T09: Lista de inscritos e estados da tela**
   - **Descrição:** completar a página `Inscritos` com o carregamento ao abrir (`carregar()` num `useEffect`), os estados "Carregando inscrições…", lista vazia (com link "Inscreva-se") e falha (mensagem e "Tentar de novo"), o contador ("1 inscrito" / "N inscritos") e a tabela com Nome, E-mail, Telefone, Tipo de ingresso e a coluna de ações com o botão "Excluir" (ainda sem ação). Tipo exibido como "Estudante"/"Profissional" e telefone vazio como "—". Criar o `inscritos.css` (tabela num contêiner com `overflow-x: auto`) e `tests/inscritos.test.jsx`, com `vi.mock` da camada de API. Simular a camada de API também em `tests/navegacao.test.jsx` (`listarInscricoes` devolvendo `[]`), já que a tela de inscritos passa a buscar a lista ao abrir.
   - **Requisitos:** REQ-FE-20, REQ-FE-21, REQ-FE-22, REQ-FE-23, REQ-FE-24, REQ-FE-32 (tabela; verificação em T11)
   - **Arquivos:** `frontend/src/paginas/Inscritos.jsx` (alterar), `frontend/src/estilos/inscritos.css` (criar), `frontend/tests/inscritos.test.jsx` (criar), `frontend/tests/navegacao.test.jsx` (alterar)
@@ -119,11 +119,11 @@
 | REQ-FE-17 | T08            | `inscricao.test.jsx` › "REQ-FE-17: \"E-mail já cadastrado\" aparece junto ao campo e-mail e os valores ficam"                                                | implementado |
 | REQ-FE-18 | T08            | `inscricao.test.jsx` › "REQ-FE-18: outro erro da API aparece na área geral acima do botão e os valores ficam"; "REQ-FE-18: a mensagem geral some ao enviar de novo"                                                | implementado |
 | REQ-FE-19 | T04, T08       | `api.test.js` › "REQ-FE-19: falha de conexão vira ErroDeConexao com a mensagem de servidor fora do ar"; `inscricao.test.jsx` › "REQ-FE-19: sem conexão com a API, mostra a mensagem de servidor fora do ar e os valores ficam"              | implementado |
-| REQ-FE-20 | T04, T09       | `api.test.js` › "REQ-FE-20: listarInscricoes faz GET /inscricoes e devolve o array recebido"; `inscritos.test.jsx` › "REQ-FE-20: ..."              | parcial (T04) |
-| REQ-FE-21 | T09            | `inscritos.test.jsx` › "REQ-FE-21: ..."                                                | pendente |
-| REQ-FE-22 | T09            | `inscritos.test.jsx` › "REQ-FE-22: ..."                                                | pendente |
-| REQ-FE-23 | T09            | `inscritos.test.jsx` › "REQ-FE-23: ..."                                                | pendente |
-| REQ-FE-24 | T09            | `inscritos.test.jsx` › "REQ-FE-24: ..."                                                | pendente |
+| REQ-FE-20 | T04, T09       | `api.test.js` › "REQ-FE-20: listarInscricoes faz GET /inscricoes e devolve o array recebido"; `inscritos.test.jsx` › "REQ-FE-20: busca as inscrições ao abrir e mostra a tabela na ordem recebida, com tipo legível e \"—\" sem telefone"              | implementado |
+| REQ-FE-21 | T09            | `inscritos.test.jsx` › "REQ-FE-21: mostra a quantidade total de inscrições"                                                | implementado |
+| REQ-FE-22 | T09            | `inscritos.test.jsx` › "REQ-FE-22: mostra \"Carregando inscrições…\" enquanto a lista não chega"                                                | implementado |
+| REQ-FE-23 | T09            | `inscritos.test.jsx` › "REQ-FE-23: lista vazia mostra \"Nenhuma inscrição ainda\" com link para a inscrição"                                                | implementado |
+| REQ-FE-24 | T09            | `inscritos.test.jsx` › "REQ-FE-24: falha ao carregar mostra o erro e \"Tentar de novo\" busca a lista outra vez"; "REQ-FE-24: sem conexão com a API, mostra a mensagem de servidor fora do ar"                                                | implementado |
 | REQ-FE-25 | T10            | `inscritos.test.jsx` › "REQ-FE-25: ..."                                                | pendente |
 | REQ-FE-26 | T04, T10       | `api.test.js` › "REQ-FE-26: removerInscricao faz DELETE /inscricoes/:id"; `inscritos.test.jsx` › "REQ-FE-26: ..."              | parcial (T04) |
 | REQ-FE-27 | T04, T10       | `api.test.js` › "REQ-FE-27: status de erro vira ErroDaApi com status, mensagem e campos"; "REQ-FE-27: status de erro com corpo que não é JSON vira \"Erro inesperado do servidor\""; `inscritos.test.jsx` › "REQ-FE-27: ..."              | parcial (T04) |
