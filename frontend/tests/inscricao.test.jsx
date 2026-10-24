@@ -118,4 +118,54 @@ describe('formulário de inscrição', () => {
     await usuario.click(campos().profissional);
     expect(screen.queryByText('Escolha o tipo de ingresso')).not.toBeInTheDocument();
   });
+
+  it('REQ-FE-14: envia os 4 campos à API e, enquanto espera, deixa o botão desabilitado com "Enviando…"', async () => {
+    // Promessa controlada pelo teste, para observar a tela no meio do envio
+    let responder;
+    criarInscricao.mockReturnValue(new Promise((resolver) => (responder = resolver)));
+    const { usuario } = renderizar('/inscricao');
+
+    await preencher(usuario, { telefone: '49999692146', tipo: 'Profissional' });
+    await usuario.click(campos().enviar);
+
+    expect(criarInscricao).toHaveBeenCalledTimes(1);
+    expect(criarInscricao).toHaveBeenCalledWith({
+      nome: 'Maria Silva',
+      email: 'maria@email.com',
+      telefone: '49999692146',
+      tipoIngresso: 'profissional',
+    });
+
+    const botao = screen.getByRole('button', { name: 'Enviando…' });
+    expect(botao).toBeDisabled();
+
+    responder({ id: 1, nome: 'Maria Silva', email: 'maria@email.com', telefone: '(49) 99969-2146', tipoIngresso: 'profissional' });
+
+    expect(await screen.findByRole('button', { name: 'Enviar inscrição' })).toBeEnabled();
+  });
+
+  it('REQ-FE-15: depois do sucesso, mostra a confirmação com o nome e o link para inscritos e limpa o formulário', async () => {
+    criarInscricao.mockResolvedValue({
+      id: 1,
+      nome: 'Maria Silva',
+      email: 'maria@email.com',
+      telefone: '',
+      tipoIngresso: 'estudante',
+    });
+    const { usuario } = renderizar('/inscricao');
+
+    await preencher(usuario);
+    await usuario.click(campos().enviar);
+
+    const confirmacao = await screen.findByRole('status');
+    expect(confirmacao).toHaveTextContent('Inscrição confirmada, Maria Silva!');
+    expect(screen.getByRole('link', { name: 'Ver inscritos' })).toHaveAttribute('href', '/inscritos');
+
+    const formulario = campos();
+    expect(formulario.nome).toHaveValue('');
+    expect(formulario.email).toHaveValue('');
+    expect(formulario.telefone).toHaveValue('');
+    expect(formulario.estudante).not.toBeChecked();
+    expect(formulario.profissional).not.toBeChecked();
+  });
 });

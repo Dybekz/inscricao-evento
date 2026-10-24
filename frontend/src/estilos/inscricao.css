@@ -102,6 +102,11 @@
   align-self: stretch;
 }
 
+.inscricao-sucesso-texto {
+  margin: 0 0 var(--espaco-1);
+  font-weight: 600;
+}
+
 @media (min-width: 640px) {
   .inscricao {
     max-width: 560px;

@@ -56,7 +56,7 @@
   - **Depende de:** T02, T05
   - **Commit sugerido:** `feat/frontend - formulário de inscrição com validação`
 
-- [ ] **T07: Envio da inscrição e mensagem de sucesso**
+- [x] **T07: Envio da inscrição e mensagem de sucesso**
   - **Descrição:** no envio com dados válidos, ligar `enviando` (botão desabilitado com "Enviando…"), chamar `criarInscricao(valores)` e, no sucesso, exibir "Inscrição confirmada, {nome}!" com o link "Ver inscritos" e limpar o formulário (passos 1 a 3 do fluxo de envio do design).
   - **Requisitos:** REQ-FE-14, REQ-FE-15
   - **Arquivos:** `frontend/src/paginas/Inscricao.jsx` (alterar), `frontend/tests/inscricao.test.jsx` (alterar)
@@ -113,8 +113,8 @@
 | REQ-FE-11 | T05, T06       | `validacao.test.js` › "REQ-FE-11: telefone com letras, símbolos ou quantidade errada de dígitos gera mensagem"; "REQ-FE-11: aceita telefone vazio, só com espaços ou com 10 e 11 dígitos em qualquer formato"; `inscricao.test.jsx` › "REQ-FE-11: telefone inválido mostra a mensagem junto ao campo e não chama a API"        | implementado |
 | REQ-FE-12 | T06            | `inscricao.test.jsx` › "REQ-FE-12: enviar o formulário vazio mostra as 3 mensagens de uma vez"                                                | implementado |
 | REQ-FE-13 | T06            | `inscricao.test.jsx` › "REQ-FE-13: alterar um campo com erro remove só a mensagem dele"                                                | implementado |
-| REQ-FE-14 | T04, T07       | `api.test.js` › "REQ-FE-14: criarInscricao envia POST /inscricoes em JSON com os 4 campos e devolve a inscrição criada"; `inscricao.test.jsx` › "REQ-FE-14: ..." | pendente |
-| REQ-FE-15 | T07            | `inscricao.test.jsx` › "REQ-FE-15: ..."                                                | pendente |
+| REQ-FE-14 | T04, T07       | `api.test.js` › "REQ-FE-14: criarInscricao envia POST /inscricoes em JSON com os 4 campos e devolve a inscrição criada"; `inscricao.test.jsx` › "REQ-FE-14: envia os 4 campos à API e, enquanto espera, deixa o botão desabilitado com \"Enviando…\"" | implementado |
+| REQ-FE-15 | T07            | `inscricao.test.jsx` › "REQ-FE-15: depois do sucesso, mostra a confirmação com o nome e o link para inscritos e limpa o formulário"                                                | implementado |
 | REQ-FE-16 | T08            | `inscricao.test.jsx` › "REQ-FE-16: ..."                                                | pendente |
 | REQ-FE-17 | T08            | `inscricao.test.jsx` › "REQ-FE-17: ..."                                                | pendente |
 | REQ-FE-18 | T08            | `inscricao.test.jsx` › "REQ-FE-18: ..."                                                | pendente |

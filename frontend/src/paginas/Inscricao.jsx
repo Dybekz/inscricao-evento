@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Link } from 'react-router';
+import { criarInscricao } from '../api/inscricoes.js';
 import { validarFormulario } from '../validacao/inscricao.js';
 import '../estilos/inscricao.css';
 
@@ -24,6 +26,8 @@ function atributosDeErro(campo, erros) {
 export default function Inscricao() {
   const [valores, setValores] = useState(VALORES_INICIAIS);
   const [erros, setErros] = useState({});
+  const [enviando, setEnviando] = useState(false);
+  const [inscritoComo, setInscritoComo] = useState('');
 
   function alterar(evento) {
     const { name, value } = evento.target;
@@ -39,19 +43,38 @@ export default function Inscricao() {
     });
   }
 
-  function enviar(evento) {
+  async function enviar(evento) {
     evento.preventDefault();
+    setInscritoComo('');
 
     const errosEncontrados = validarFormulario(valores);
     setErros(errosEncontrados);
+    if (Object.keys(errosEncontrados).length > 0) {
+      return;
+    }
 
-    // O envio para a API entra na T07
+    setEnviando(true);
+    try {
+      const inscricao = await criarInscricao(valores);
+      setInscritoComo(inscricao.nome);
+      setValores(VALORES_INICIAIS);
+      // Os erros devolvidos pela API passam a ser tratados na T08
+    } finally {
+      setEnviando(false);
+    }
   }
 
   return (
     <section className="inscricao">
       <h1>Inscrição</h1>
       <p className="inscricao-introducao">Preencha seus dados para garantir sua vaga no evento.</p>
+
+      {inscritoComo && (
+        <div role="status" className="mensagem mensagem-sucesso">
+          <p className="inscricao-sucesso-texto">Inscrição confirmada, {inscritoComo}!</p>
+          <Link to="/inscritos">Ver inscritos</Link>
+        </div>
+      )}
 
       {/* noValidate: valem só as nossas mensagens em português, não as do navegador */}
       <form className="inscricao-formulario" onSubmit={enviar} noValidate>
@@ -127,8 +150,9 @@ export default function Inscricao() {
           <MensagemDeErro campo="tipoIngresso" erros={erros} />
         </fieldset>
 
-        <button type="submit" className="botao inscricao-botao">
-          Enviar inscrição
+        {/* Desabilitado durante o envio, para um clique duplo não criar duas inscrições */}
+        <button type="submit" className="botao inscricao-botao" disabled={enviando}>
+          {enviando ? 'Enviando…' : 'Enviar inscrição'}
         </button>
       </form>
     </section>
