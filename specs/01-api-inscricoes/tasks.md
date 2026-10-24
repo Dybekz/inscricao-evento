@@ -2,7 +2,7 @@
 > **Documento:** tarefas
 > **Status:** aprovado
 > **Aprovado em:** 2026-10-24
-> **Revisão:** pendente
+> **Revisão:** aprovada
 
 # Tarefas — 01-api-inscricoes
 
@@ -127,3 +127,9 @@
   - Teste incompleto: o teste de REQ-BE-18 não confere que a inscrição não foi criada, como o critério EARS pede. O comportamento está certo (conferido à mão), falta a asserção. Correção: T10.
 - **Desvio de convenção (só documento):** as linhas "Commit sugerido" de T01 a T09 ainda usam o formato antigo `tipo(escopo): ...`. Os commits reais seguem `tipo/escopo - ...`, exceto `344e26f` e os de spec, anteriores à mudança do padrão (`93afa01`).
 - **Escopo extra:** nenhum.
+
+### 2026-10-24 (após a T10)
+
+- **Testes:** 26/26 passando (4 arquivos). Todos os requisitos automáticos têm ao menos um teste com o ID no nome; REQ-BE-20 e REQ-BE-21 seguem verificados manualmente.
+- **Correções conferidas:** corpos `[1,2]`, `"abc"`, `123` e `null` caem na validação dos obrigatórios (`backend/src/app.js:9`); corpo malformado continua `400` e não cria inscrição.
+- **Resultado:** 23 de 23 requisitos conformes. Nenhuma lacuna e nenhum escopo extra. Revisão aprovada pela usuária em 2026-10-24.
