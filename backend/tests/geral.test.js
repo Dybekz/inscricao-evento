@@ -1,8 +1,13 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import request from 'supertest';
 import app from '../src/app.js';
+import { resetar } from '../src/repositorio/inscricoes.js';
 
 describe('comportamento geral da API', () => {
+  beforeEach(() => {
+    resetar();
+  });
+
   it('REQ-BE-18: retorna 400 em JSON quando o corpo não é um JSON válido', async () => {
     const res = await request(app)
       .post('/inscricoes')
@@ -39,5 +44,25 @@ describe('comportamento geral da API', () => {
     expect(res.status).toBe(404);
     expect(res.headers['content-type']).toMatch(/application\/json/);
     expect(res.body).toEqual({ erro: 'Rota não encontrada' });
+  });
+
+  it('REQ-BE-22: erros dos endpoints vêm em JSON, com a mensagem em português', async () => {
+    const inscricao = { nome: 'Maria Silva', email: 'maria@email.com', tipoIngresso: 'estudante' };
+    await request(app).post('/inscricoes').send(inscricao);
+
+    const erros = [
+      { requisicao: request(app).post('/inscricoes').send({}), status: 400, erro: 'Dados inválidos' },
+      { requisicao: request(app).post('/inscricoes').send(inscricao), status: 400, erro: 'E-mail já cadastrado' },
+      { requisicao: request(app).delete('/inscricoes/abc'), status: 400, erro: 'O id deve ser um número inteiro positivo' },
+      { requisicao: request(app).delete('/inscricoes/99'), status: 404, erro: 'Inscrição não encontrada' },
+    ];
+
+    for (const { requisicao, status, erro } of erros) {
+      const res = await requisicao;
+
+      expect(res.status).toBe(status);
+      expect(res.headers['content-type']).toMatch(/application\/json/);
+      expect(res.body.erro).toBe(erro);
+    }
   });
 });

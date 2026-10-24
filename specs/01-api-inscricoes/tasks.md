@@ -72,7 +72,7 @@
   - **Depende de:** T04
   - **Commit sugerido:** `feat(backend): remove inscrição`
 
-- [ ] **T09: Formato dos erros e verificação manual**
+- [x] **T09: Formato dos erros e verificação manual**
   - **Descrição:** acrescentar em `tests/geral.test.js` um teste que percorre os erros dos endpoints (validação, e-mail duplicado, id inválido, id inexistente) e confere que todos vêm em JSON, com `erro` em português. Depois, verificar manualmente REQ-BE-20 (subir com e sem `PORT`) e REQ-BE-21 (criar inscrição, reiniciar o servidor e ver o GET voltar `[]`), registrando o resultado na matriz.
   - **Requisitos:** REQ-BE-20, REQ-BE-21, REQ-BE-22
   - **Arquivos:** `backend/tests/geral.test.js` (alterar), `specs/01-api-inscricoes/tasks.md` (alterar)
@@ -103,9 +103,9 @@
 | REQ-BE-17 | T08       | `remover.test.js` › "REQ-BE-17: retorna 400 em JSON para id que não é inteiro positivo" | implementado |
 | REQ-BE-18 | T02       | `geral.test.js` › "REQ-BE-18: retorna 400 em JSON quando o corpo não é um JSON válido" | implementado |
 | REQ-BE-19 | T02       | `geral.test.js` › "REQ-BE-19: libera CORS para o frontend em http://localhost:5173"; "REQ-BE-19: responde ao preflight com os métodos GET, POST e DELETE" | implementado |
-| REQ-BE-20 | T02, T09  | manual (T09); porta 3001 padrão conferida na T02               | parcial (falta T09) |
-| REQ-BE-21 | T03, T09  | manual (T09); repositório em memória criado na T03             | parcial (falta T09) |
-| REQ-BE-22 | T02, T09  | `geral.test.js` › "REQ-BE-22: retorna 404 em JSON, em português, para rota inexistente"; "REQ-BE-22: erros dos endpoints em JSON" (T09) | parcial (falta T09) |
+| REQ-BE-20 | T02, T09  | manual em 2026-10-24: sem `PORT` → log "API rodando em http://localhost:3001" e GET respondeu `[]`; com `PORT=4000` → respondeu na 4000 e a 3001 ficou sem resposta | verificado |
+| REQ-BE-21 | T03, T09  | manual em 2026-10-24: POST criou id 1 e GET listou; servidor reiniciado → GET `[]` e novo POST recebeu id 1 | verificado |
+| REQ-BE-22 | T02, T09  | `geral.test.js` › "REQ-BE-22: retorna 404 em JSON, em português, para rota inexistente"; "REQ-BE-22: erros dos endpoints vêm em JSON, com a mensagem em português" | implementado |
 | REQ-BE-23 | T06       | `criar.test.js` › "REQ-BE-23: guarda o telefone formatado, independentemente de como foi digitado" | implementado |
 
 ## Registro de revisão
