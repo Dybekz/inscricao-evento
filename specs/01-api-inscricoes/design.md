@@ -23,8 +23,9 @@ O `app` é criado em `app.js` e exportado sem chamar `listen`. Só o `server.js`
 
 ```
 backend/
+├── .gitignore                    # ignora node_modules/
 ├── package.json                  # "type": "module", scripts dev/start/test
-├── vitest.config.js              # ambiente node
+├── vitest.config.js              # ambiente node, passWithNoTests (suíte vazia não falha)
 ├── src/
 │   ├── app.js                    # cria e exporta o app (CORS, JSON, rotas, erros)
 │   ├── server.js                 # app.listen(PORT || 3001)
