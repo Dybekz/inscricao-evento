@@ -64,7 +64,7 @@
   - **Depende de:** T04, T06
   - **Commit sugerido:** `feat/frontend - envia a inscrição`
 
-- [ ] **T08: Erros da API no formulário**
+- [x] **T08: Erros da API no formulário**
   - **Descrição:** tratar os erros de `criarInscricao` conforme os passos 4 a 8 do fluxo de envio do design: `campos` junto aos campos, "E-mail já cadastrado" junto ao e-mail (DT-07, texto numa constante), outros `ErroDaApi` e `ErroDeConexao` na área geral acima do botão (`role="alert"`), sempre mantendo os valores digitados.
   - **Requisitos:** REQ-FE-16, REQ-FE-17, REQ-FE-18, REQ-FE-19
   - **Arquivos:** `frontend/src/paginas/Inscricao.jsx` (alterar), `frontend/tests/inscricao.test.jsx` (alterar)
@@ -115,10 +115,10 @@
 | REQ-FE-13 | T06            | `inscricao.test.jsx` › "REQ-FE-13: alterar um campo com erro remove só a mensagem dele"                                                | implementado |
 | REQ-FE-14 | T04, T07       | `api.test.js` › "REQ-FE-14: criarInscricao envia POST /inscricoes em JSON com os 4 campos e devolve a inscrição criada"; `inscricao.test.jsx` › "REQ-FE-14: envia os 4 campos à API e, enquanto espera, deixa o botão desabilitado com \"Enviando…\"" | implementado |
 | REQ-FE-15 | T07            | `inscricao.test.jsx` › "REQ-FE-15: depois do sucesso, mostra a confirmação com o nome e o link para inscritos e limpa o formulário"                                                | implementado |
-| REQ-FE-16 | T08            | `inscricao.test.jsx` › "REQ-FE-16: ..."                                                | pendente |
-| REQ-FE-17 | T08            | `inscricao.test.jsx` › "REQ-FE-17: ..."                                                | pendente |
-| REQ-FE-18 | T08            | `inscricao.test.jsx` › "REQ-FE-18: ..."                                                | pendente |
-| REQ-FE-19 | T04, T08       | `api.test.js` › "REQ-FE-19: falha de conexão vira ErroDeConexao com a mensagem de servidor fora do ar"; `inscricao.test.jsx` › "REQ-FE-19: ..."              | parcial (T04) |
+| REQ-FE-16 | T08            | `inscricao.test.jsx` › "REQ-FE-16: erros por campo vindos da API aparecem junto a cada campo e os valores ficam"                                                | implementado |
+| REQ-FE-17 | T08            | `inscricao.test.jsx` › "REQ-FE-17: \"E-mail já cadastrado\" aparece junto ao campo e-mail e os valores ficam"                                                | implementado |
+| REQ-FE-18 | T08            | `inscricao.test.jsx` › "REQ-FE-18: outro erro da API aparece na área geral acima do botão e os valores ficam"; "REQ-FE-18: a mensagem geral some ao enviar de novo"                                                | implementado |
+| REQ-FE-19 | T04, T08       | `api.test.js` › "REQ-FE-19: falha de conexão vira ErroDeConexao com a mensagem de servidor fora do ar"; `inscricao.test.jsx` › "REQ-FE-19: sem conexão com a API, mostra a mensagem de servidor fora do ar e os valores ficam"              | implementado |
 | REQ-FE-20 | T04, T09       | `api.test.js` › "REQ-FE-20: listarInscricoes faz GET /inscricoes e devolve o array recebido"; `inscritos.test.jsx` › "REQ-FE-20: ..."              | parcial (T04) |
 | REQ-FE-21 | T09            | `inscritos.test.jsx` › "REQ-FE-21: ..."                                                | pendente |
 | REQ-FE-22 | T09            | `inscritos.test.jsx` › "REQ-FE-22: ..."                                                | pendente |

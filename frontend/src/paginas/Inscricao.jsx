@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
 import { criarInscricao } from '../api/inscricoes.js';
+import { ErroDaApi, ErroDeConexao, MENSAGEM_SEM_CONEXAO } from '../api/erros.js';
 import { validarFormulario } from '../validacao/inscricao.js';
 import '../estilos/inscricao.css';
 
 // tipoIngresso '' = nenhuma opção marcada (REQ-FE-08)
 const VALORES_INICIAIS = { nome: '', email: '', telefone: '', tipoIngresso: '' };
+
+// Texto exato do contrato da API (REQ-BE-06); é por ele que o erro vai para junto do e-mail (DT-07)
+const MENSAGEM_EMAIL_DUPLICADO = 'E-mail já cadastrado';
 
 function MensagemDeErro({ campo, erros }) {
   if (!erros[campo]) {
@@ -28,6 +32,7 @@ export default function Inscricao() {
   const [erros, setErros] = useState({});
   const [enviando, setEnviando] = useState(false);
   const [inscritoComo, setInscritoComo] = useState('');
+  const [erroGeral, setErroGeral] = useState('');
 
   function alterar(evento) {
     const { name, value } = evento.target;
@@ -46,6 +51,7 @@ export default function Inscricao() {
   async function enviar(evento) {
     evento.preventDefault();
     setInscritoComo('');
+    setErroGeral('');
 
     const errosEncontrados = validarFormulario(valores);
     setErros(errosEncontrados);
@@ -58,7 +64,19 @@ export default function Inscricao() {
       const inscricao = await criarInscricao(valores);
       setInscritoComo(inscricao.nome);
       setValores(VALORES_INICIAIS);
-      // Os erros devolvidos pela API passam a ser tratados na T08
+    } catch (erro) {
+      // Em todos os casos de erro, os valores digitados continuam no formulário
+      if (erro instanceof ErroDaApi && erro.campos) {
+        setErros(erro.campos);
+      } else if (erro instanceof ErroDaApi && erro.status === 400 && erro.message === MENSAGEM_EMAIL_DUPLICADO) {
+        setErros({ email: erro.message });
+      } else if (erro instanceof ErroDaApi) {
+        setErroGeral(erro.message);
+      } else if (erro instanceof ErroDeConexao) {
+        setErroGeral(MENSAGEM_SEM_CONEXAO);
+      } else {
+        throw erro;
+      }
     } finally {
       setEnviando(false);
     }
@@ -149,6 +167,12 @@ export default function Inscricao() {
           </div>
           <MensagemDeErro campo="tipoIngresso" erros={erros} />
         </fieldset>
+
+        {erroGeral && (
+          <p role="alert" className="mensagem mensagem-erro">
+            {erroGeral}
+          </p>
+        )}
 
         {/* Desabilitado durante o envio, para um clique duplo não criar duas inscrições */}
         <button type="submit" className="botao inscricao-botao" disabled={enviando}>

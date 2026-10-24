@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import { renderizar } from './renderizar.jsx';
 import { criarInscricao } from '../src/api/inscricoes.js';
+import { ErroDaApi, ErroDeConexao, MENSAGEM_SEM_CONEXAO } from '../src/api/erros.js';
 
 // A API é simulada: nenhum teste de tela faz requisição de verdade (DT-10)
 vi.mock('../src/api/inscricoes.js');
@@ -167,5 +168,82 @@ describe('formulário de inscrição', () => {
     expect(formulario.telefone).toHaveValue('');
     expect(formulario.estudante).not.toBeChecked();
     expect(formulario.profissional).not.toBeChecked();
+  });
+
+  describe('erros da API', () => {
+    // Confere que o que foi digitado continua no formulário depois do erro
+    function esperarValoresMantidos() {
+      const formulario = campos();
+      expect(formulario.nome).toHaveValue('Maria Silva');
+      expect(formulario.email).toHaveValue('maria@email.com');
+      expect(formulario.telefone).toHaveValue('49999692146');
+      expect(formulario.estudante).toBeChecked();
+    }
+
+    async function enviarComErro(erro) {
+      criarInscricao.mockRejectedValue(erro);
+      const { usuario } = renderizar('/inscricao');
+
+      await preencher(usuario, { telefone: '49999692146' });
+      await usuario.click(campos().enviar);
+      await screen.findByRole('button', { name: 'Enviar inscrição' });
+    }
+
+    it('REQ-FE-16: erros por campo vindos da API aparecem junto a cada campo e os valores ficam', async () => {
+      await enviarComErro(
+        new ErroDaApi(400, 'Dados inválidos', {
+          nome: 'Mensagem da API para o nome',
+          telefone: 'Mensagem da API para o telefone',
+        }),
+      );
+
+      expect(campos().nome).toHaveAccessibleDescription('Mensagem da API para o nome');
+      expect(campos().telefone).toHaveAccessibleDescription('Mensagem da API para o telefone');
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+      esperarValoresMantidos();
+    });
+
+    it('REQ-FE-17: "E-mail já cadastrado" aparece junto ao campo e-mail e os valores ficam', async () => {
+      await enviarComErro(new ErroDaApi(400, 'E-mail já cadastrado'));
+
+      expect(campos().email).toHaveAccessibleDescription('E-mail já cadastrado');
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+      expect(screen.queryByRole('status')).not.toBeInTheDocument();
+      esperarValoresMantidos();
+    });
+
+    it('REQ-FE-18: outro erro da API aparece na área geral acima do botão e os valores ficam', async () => {
+      await enviarComErro(new ErroDaApi(500, 'Erro interno do servidor'));
+
+      expect(screen.getByRole('alert')).toHaveTextContent('Erro interno do servidor');
+      expect(screen.queryByRole('status')).not.toBeInTheDocument();
+      esperarValoresMantidos();
+    });
+
+    it('REQ-FE-19: sem conexão com a API, mostra a mensagem de servidor fora do ar e os valores ficam', async () => {
+      await enviarComErro(new ErroDeConexao());
+
+      expect(screen.getByRole('alert')).toHaveTextContent(MENSAGEM_SEM_CONEXAO);
+      esperarValoresMantidos();
+    });
+
+    it('REQ-FE-18: a mensagem geral some ao enviar de novo', async () => {
+      criarInscricao.mockRejectedValueOnce(new ErroDeConexao()).mockResolvedValueOnce({
+        id: 1,
+        nome: 'Maria Silva',
+        email: 'maria@email.com',
+        telefone: '',
+        tipoIngresso: 'estudante',
+      });
+      const { usuario } = renderizar('/inscricao');
+
+      await preencher(usuario);
+      await usuario.click(campos().enviar);
+      expect(await screen.findByRole('alert')).toBeInTheDocument();
+
+      await usuario.click(campos().enviar);
+      expect(await screen.findByRole('status')).toHaveTextContent('Inscrição confirmada, Maria Silva!');
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    });
   });
 });
