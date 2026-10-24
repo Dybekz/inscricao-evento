@@ -80,34 +80,50 @@
   - **Depende de:** T06, T07, T08
   - **Commit sugerido:** `test(backend): confere erros em json e testa porta e memória`
 
+- [ ] **T10: Correções da revisão (corpo JSON que não é objeto)**
+  - **Descrição:** o `express.json()` está no modo estrito padrão e recusa corpos que são JSON válido mas primitivos (`"abc"`, `123`, `null`) como "não é um JSON válido", enquanto o design manda tratar todo JSON válido que não é objeto como `{}` e cair na validação dos obrigatórios. Trocar para `express.json({ strict: false })`. Em `tests/geral.test.js`, acrescentar um teste para esses corpos e completar o teste de REQ-BE-18 conferindo que o GET continua `[]` depois do corpo malformado.
+  - **Requisitos:** REQ-BE-18, REQ-BE-13
+  - **Arquivos:** `backend/src/app.js` (alterar), `backend/tests/geral.test.js` (alterar)
+  - **Critério de pronto:** `npm test` passa com toda a suíte, incluindo "REQ-BE-18: ... não cria a inscrição" e "REQ-BE-13: corpo JSON que não é objeto cai na validação dos campos" (`[1,2]`, `"abc"`, `123`, `null` → 400 com `campos.nome`, `campos.email` e `campos.tipoIngresso`).
+  - **Depende de:** T09
+  - **Commit sugerido:** `fix/backend - trata corpo json que não é objeto`
+
 ## Matriz de rastreabilidade
 
 | Requisito | Tarefa(s) | Teste(s)                                                       | Status   |
 | --------- | --------- | -------------------------------------------------------------- | -------- |
-| REQ-BE-01 | T03       | `listar.test.js` › "REQ-BE-01: lista todas as inscrições em ordem de criação, com status 200" | implementado |
-| REQ-BE-02 | T03       | `listar.test.js` › "REQ-BE-02: retorna 200 e um array vazio quando não há inscrições" | implementado |
-| REQ-BE-03 | T04       | `criar.test.js` › "REQ-BE-03: cria inscrição válida e retorna 201 com exatamente os campos do modelo" | implementado |
-| REQ-BE-04 | T04, T08  | `criar.test.js` › "REQ-BE-04: gera ids inteiros crescentes"; `remover.test.js` › "REQ-BE-04: não reaproveita o id depois de uma exclusão" | implementado |
-| REQ-BE-05 | T04       | `criar.test.js` › "REQ-BE-05: remove espaços das pontas de nome, e-mail e telefone e guarda o e-mail em minúsculas" | implementado |
-| REQ-BE-06 | T07       | `criar.test.js` › "REQ-BE-06: retorna 400 com \"E-mail já cadastrado\" para e-mail repetido, mesmo com maiúsculas e espaços" | implementado |
-| REQ-BE-07 | T05       | `criar.test.js` › "REQ-BE-07: retorna 400 com campos.nome para nome ausente, vazio, só espaços ou não-texto" | implementado |
-| REQ-BE-08 | T05       | `criar.test.js` › "REQ-BE-08: retorna 400 com campos.email para e-mail ausente, vazio ou não-texto" | implementado |
-| REQ-BE-09 | T05       | `criar.test.js` › "REQ-BE-09: retorna 400 com campos.email para e-mail fora do formato texto@texto.texto" | implementado |
-| REQ-BE-10 | T05       | `criar.test.js` › "REQ-BE-10: retorna 400 com campos.tipoIngresso para ausente, valor fora da lista ou com maiúsculas" | implementado |
-| REQ-BE-11 | T04       | `criar.test.js` › "REQ-BE-11: aceita telefone ausente, null ou só com espaços e guarda \"\"" | implementado |
-| REQ-BE-12 | T06       | `criar.test.js` › "REQ-BE-12: retorna 400 com campos.telefone para letras, símbolos, número não-texto e quantidade errada de dígitos" | implementado |
-| REQ-BE-13 | T05       | `criar.test.js` › "REQ-BE-13: informa todos os campos inválidos na mesma resposta e não cria a inscrição"; "REQ-BE-13: corpo vazio retorna os três campos obrigatórios" | implementado |
-| REQ-BE-14 | T04       | `criar.test.js` › "REQ-BE-14: ignora campos extras enviados no corpo" | implementado |
-| REQ-BE-15 | T08       | `remover.test.js` › "REQ-BE-15: remove a inscrição existente, retorna 204 sem corpo e ela some do GET" | implementado |
-| REQ-BE-16 | T08       | `remover.test.js` › "REQ-BE-16: retorna 404 em JSON para id inteiro que não existe" | implementado |
-| REQ-BE-17 | T08       | `remover.test.js` › "REQ-BE-17: retorna 400 em JSON para id que não é inteiro positivo" | implementado |
-| REQ-BE-18 | T02       | `geral.test.js` › "REQ-BE-18: retorna 400 em JSON quando o corpo não é um JSON válido" | implementado |
-| REQ-BE-19 | T02       | `geral.test.js` › "REQ-BE-19: libera CORS para o frontend em http://localhost:5173"; "REQ-BE-19: responde ao preflight com os métodos GET, POST e DELETE" | implementado |
+| REQ-BE-01 | T03       | `listar.test.js` › "REQ-BE-01: lista todas as inscrições em ordem de criação, com status 200" | conforme |
+| REQ-BE-02 | T03       | `listar.test.js` › "REQ-BE-02: retorna 200 e um array vazio quando não há inscrições" | conforme |
+| REQ-BE-03 | T04       | `criar.test.js` › "REQ-BE-03: cria inscrição válida e retorna 201 com exatamente os campos do modelo" | conforme |
+| REQ-BE-04 | T04, T08  | `criar.test.js` › "REQ-BE-04: gera ids inteiros crescentes"; `remover.test.js` › "REQ-BE-04: não reaproveita o id depois de uma exclusão" | conforme |
+| REQ-BE-05 | T04       | `criar.test.js` › "REQ-BE-05: remove espaços das pontas de nome, e-mail e telefone e guarda o e-mail em minúsculas" | conforme |
+| REQ-BE-06 | T07       | `criar.test.js` › "REQ-BE-06: retorna 400 com \"E-mail já cadastrado\" para e-mail repetido, mesmo com maiúsculas e espaços" | conforme |
+| REQ-BE-07 | T05       | `criar.test.js` › "REQ-BE-07: retorna 400 com campos.nome para nome ausente, vazio, só espaços ou não-texto" | conforme |
+| REQ-BE-08 | T05       | `criar.test.js` › "REQ-BE-08: retorna 400 com campos.email para e-mail ausente, vazio ou não-texto" | conforme |
+| REQ-BE-09 | T05       | `criar.test.js` › "REQ-BE-09: retorna 400 com campos.email para e-mail fora do formato texto@texto.texto" | conforme |
+| REQ-BE-10 | T05       | `criar.test.js` › "REQ-BE-10: retorna 400 com campos.tipoIngresso para ausente, valor fora da lista ou com maiúsculas" | conforme |
+| REQ-BE-11 | T04       | `criar.test.js` › "REQ-BE-11: aceita telefone ausente, null ou só com espaços e guarda \"\"" | conforme |
+| REQ-BE-12 | T06       | `criar.test.js` › "REQ-BE-12: retorna 400 com campos.telefone para letras, símbolos, número não-texto e quantidade errada de dígitos" | conforme |
+| REQ-BE-13 | T05, T10  | `criar.test.js` › "REQ-BE-13: informa todos os campos inválidos na mesma resposta e não cria a inscrição"; "REQ-BE-13: corpo vazio retorna os três campos obrigatórios" | lacuna (T10) |
+| REQ-BE-14 | T04       | `criar.test.js` › "REQ-BE-14: ignora campos extras enviados no corpo" | conforme |
+| REQ-BE-15 | T08       | `remover.test.js` › "REQ-BE-15: remove a inscrição existente, retorna 204 sem corpo e ela some do GET" | conforme |
+| REQ-BE-16 | T08       | `remover.test.js` › "REQ-BE-16: retorna 404 em JSON para id inteiro que não existe" | conforme |
+| REQ-BE-17 | T08       | `remover.test.js` › "REQ-BE-17: retorna 400 em JSON para id que não é inteiro positivo" | conforme |
+| REQ-BE-18 | T02, T10  | `geral.test.js` › "REQ-BE-18: retorna 400 em JSON quando o corpo não é um JSON válido" | lacuna (T10) |
+| REQ-BE-19 | T02       | `geral.test.js` › "REQ-BE-19: libera CORS para o frontend em http://localhost:5173"; "REQ-BE-19: responde ao preflight com os métodos GET, POST e DELETE" | conforme |
 | REQ-BE-20 | T02, T09  | manual em 2026-10-24: sem `PORT` → log "API rodando em http://localhost:3001" e GET respondeu `[]`; com `PORT=4000` → respondeu na 4000 e a 3001 ficou sem resposta | verificado |
 | REQ-BE-21 | T03, T09  | manual em 2026-10-24: POST criou id 1 e GET listou; servidor reiniciado → GET `[]` e novo POST recebeu id 1 | verificado |
-| REQ-BE-22 | T02, T09  | `geral.test.js` › "REQ-BE-22: retorna 404 em JSON, em português, para rota inexistente"; "REQ-BE-22: erros dos endpoints vêm em JSON, com a mensagem em português" | implementado |
-| REQ-BE-23 | T06       | `criar.test.js` › "REQ-BE-23: guarda o telefone formatado, independentemente de como foi digitado" | implementado |
+| REQ-BE-22 | T02, T09  | `geral.test.js` › "REQ-BE-22: retorna 404 em JSON, em português, para rota inexistente"; "REQ-BE-22: erros dos endpoints vêm em JSON, com a mensagem em português" | conforme |
+| REQ-BE-23 | T06       | `criar.test.js` › "REQ-BE-23: guarda o telefone formatado, independentemente de como foi digitado" | conforme |
 
 ## Registro de revisão
 
-Ainda não revisado.
+### 2026-10-24
+
+- **Testes:** 25/25 passando (4 arquivos). Verificações manuais repetidas: REQ-BE-20 (sem `PORT` → 3001; `PORT=4000` → 4000) e REQ-BE-21 (inscrição criada some depois do reinício) conformes.
+- **Resultado:** 21 de 23 requisitos conformes. Revisão **não aprovada**.
+- **Lacunas:**
+  - Divergente do design: corpo JSON válido primitivo (`"abc"`, `123`, `null`) recebe `400 "O corpo da requisição não é um JSON válido"` em vez de cair na validação dos obrigatórios (design, POST › "Corpo que é JSON válido mas não é objeto"). Causa: `express.json()` em modo estrito (`backend/src/app.js:8`). Arrays já se comportam como o design manda. Correção: T10.
+  - Teste incompleto: o teste de REQ-BE-18 não confere que a inscrição não foi criada, como o critério EARS pede. O comportamento está certo (conferido à mão), falta a asserção. Correção: T10.
+- **Desvio de convenção (só documento):** as linhas "Commit sugerido" de T01 a T09 ainda usam o formato antigo `tipo(escopo): ...`. Os commits reais seguem `tipo/escopo - ...`, exceto `344e26f` e os de spec, anteriores à mudança do padrão (`93afa01`).
+- **Escopo extra:** nenhum.
