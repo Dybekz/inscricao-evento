@@ -30,4 +30,17 @@ router.post('/', (req, res) => {
   res.status(201).json(inscricao);
 });
 
+router.delete('/:id', (req, res) => {
+  // Só aceita inteiro positivo: recusa "abc", "1.5", "-1", "0" e zeros à esquerda
+  if (!/^[1-9]\d*$/.test(req.params.id)) {
+    return res.status(400).json({ erro: 'O id deve ser um número inteiro positivo' });
+  }
+
+  if (!repositorio.remover(Number(req.params.id))) {
+    return res.status(404).json({ erro: 'Inscrição não encontrada' });
+  }
+
+  res.status(204).end();
+});
+
 export default router;

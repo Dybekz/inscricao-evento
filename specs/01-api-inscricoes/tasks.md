@@ -64,7 +64,7 @@
   - **Depende de:** T05
   - **Commit sugerido:** `feat(backend): bloqueia e-mail repetido`
 
-- [ ] **T08: Remoção de inscrição**
+- [x] **T08: Remoção de inscrição**
   - **Descrição:** adicionar `DELETE /inscricoes/:id`: validar `:id` com `^[1-9]\d*$` (`400` se inválido), chamar `remover` (`404` se não existir) e responder `204` sem corpo. Criar `tests/remover.test.js`, incluindo o caso de `id` não reaproveitado depois de uma exclusão.
   - **Requisitos:** REQ-BE-04 (id não reaproveitado), REQ-BE-15, REQ-BE-16, REQ-BE-17
   - **Arquivos:** `backend/src/routes/inscricoes.js` (alterar), `backend/tests/remover.test.js` (criar)
@@ -87,7 +87,7 @@
 | REQ-BE-01 | T03       | `listar.test.js` › "REQ-BE-01: lista todas as inscrições em ordem de criação, com status 200" | implementado |
 | REQ-BE-02 | T03       | `listar.test.js` › "REQ-BE-02: retorna 200 e um array vazio quando não há inscrições" | implementado |
 | REQ-BE-03 | T04       | `criar.test.js` › "REQ-BE-03: cria inscrição válida e retorna 201 com exatamente os campos do modelo" | implementado |
-| REQ-BE-04 | T04, T08  | `criar.test.js` › "REQ-BE-04: gera ids inteiros crescentes"; `remover.test.js` › "REQ-BE-04: não reaproveita o id" (T08) | parcial (falta T08) |
+| REQ-BE-04 | T04, T08  | `criar.test.js` › "REQ-BE-04: gera ids inteiros crescentes"; `remover.test.js` › "REQ-BE-04: não reaproveita o id depois de uma exclusão" | implementado |
 | REQ-BE-05 | T04       | `criar.test.js` › "REQ-BE-05: remove espaços das pontas de nome, e-mail e telefone e guarda o e-mail em minúsculas" | implementado |
 | REQ-BE-06 | T07       | `criar.test.js` › "REQ-BE-06: retorna 400 com \"E-mail já cadastrado\" para e-mail repetido, mesmo com maiúsculas e espaços" | implementado |
 | REQ-BE-07 | T05       | `criar.test.js` › "REQ-BE-07: retorna 400 com campos.nome para nome ausente, vazio, só espaços ou não-texto" | implementado |
@@ -98,9 +98,9 @@
 | REQ-BE-12 | T06       | `criar.test.js` › "REQ-BE-12: retorna 400 com campos.telefone para letras, símbolos, número não-texto e quantidade errada de dígitos" | implementado |
 | REQ-BE-13 | T05       | `criar.test.js` › "REQ-BE-13: informa todos os campos inválidos na mesma resposta e não cria a inscrição"; "REQ-BE-13: corpo vazio retorna os três campos obrigatórios" | implementado |
 | REQ-BE-14 | T04       | `criar.test.js` › "REQ-BE-14: ignora campos extras enviados no corpo" | implementado |
-| REQ-BE-15 | T08       | `remover.test.js` › "REQ-BE-15: remove e retorna 204"          | pendente |
-| REQ-BE-16 | T08       | `remover.test.js` › "REQ-BE-16: id inexistente → 404"          | pendente |
-| REQ-BE-17 | T08       | `remover.test.js` › "REQ-BE-17: id inválido → 400"             | pendente |
+| REQ-BE-15 | T08       | `remover.test.js` › "REQ-BE-15: remove a inscrição existente, retorna 204 sem corpo e ela some do GET" | implementado |
+| REQ-BE-16 | T08       | `remover.test.js` › "REQ-BE-16: retorna 404 em JSON para id inteiro que não existe" | implementado |
+| REQ-BE-17 | T08       | `remover.test.js` › "REQ-BE-17: retorna 400 em JSON para id que não é inteiro positivo" | implementado |
 | REQ-BE-18 | T02       | `geral.test.js` › "REQ-BE-18: retorna 400 em JSON quando o corpo não é um JSON válido" | implementado |
 | REQ-BE-19 | T02       | `geral.test.js` › "REQ-BE-19: libera CORS para o frontend em http://localhost:5173"; "REQ-BE-19: responde ao preflight com os métodos GET, POST e DELETE" | implementado |
 | REQ-BE-20 | T02, T09  | manual (T09); porta 3001 padrão conferida na T02               | parcial (falta T09) |
