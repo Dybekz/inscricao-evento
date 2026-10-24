@@ -24,7 +24,7 @@
   - **Depende de:** T01
   - **Commit sugerido:** `feat(backend): app express com cors e erros em json`
 
-- [ ] **T03: Repositório em memória e listagem**
+- [x] **T03: Repositório em memória e listagem**
   - **Descrição:** criar o repositório com `listar`, `criar`, `buscarPorEmail`, `remover` e `resetar`, guardando as inscrições num array e o contador `proximoId` (DT-01, seção "Forma em memória" do design). Criar o router `routes/inscricoes.js` com `GET /inscricoes` e registrá-lo no `app.js`. Criar `tests/listar.test.js`, usando `resetar()` no `beforeEach` (DT-06) e `criar()` do repositório para preparar os dados.
   - **Requisitos:** REQ-BE-01, REQ-BE-02, REQ-BE-21
   - **Arquivos:** `backend/src/repositorio/inscricoes.js` (criar), `backend/src/routes/inscricoes.js` (criar), `backend/src/app.js` (alterar), `backend/tests/listar.test.js` (criar)
@@ -84,8 +84,8 @@
 
 | Requisito | Tarefa(s) | Teste(s)                                                       | Status   |
 | --------- | --------- | -------------------------------------------------------------- | -------- |
-| REQ-BE-01 | T03       | `listar.test.js` › "REQ-BE-01: lista todas em ordem de criação" | pendente |
-| REQ-BE-02 | T03       | `listar.test.js` › "REQ-BE-02: retorna array vazio"            | pendente |
+| REQ-BE-01 | T03       | `listar.test.js` › "REQ-BE-01: lista todas as inscrições em ordem de criação, com status 200" | implementado |
+| REQ-BE-02 | T03       | `listar.test.js` › "REQ-BE-02: retorna 200 e um array vazio quando não há inscrições" | implementado |
 | REQ-BE-03 | T04       | `criar.test.js` › "REQ-BE-03: cria e retorna 201"              | pendente |
 | REQ-BE-04 | T04, T08  | `criar.test.js` › "REQ-BE-04: ids crescentes"; `remover.test.js` › "REQ-BE-04: não reaproveita o id" | pendente |
 | REQ-BE-05 | T04       | `criar.test.js` › "REQ-BE-05: normaliza espaços e e-mail"      | pendente |
@@ -104,7 +104,7 @@
 | REQ-BE-18 | T02       | `geral.test.js` › "REQ-BE-18: retorna 400 em JSON quando o corpo não é um JSON válido" | implementado |
 | REQ-BE-19 | T02       | `geral.test.js` › "REQ-BE-19: libera CORS para o frontend em http://localhost:5173"; "REQ-BE-19: responde ao preflight com os métodos GET, POST e DELETE" | implementado |
 | REQ-BE-20 | T02, T09  | manual (T09); porta 3001 padrão conferida na T02               | parcial (falta T09) |
-| REQ-BE-21 | T03, T09  | manual (T09)                                                   | pendente |
+| REQ-BE-21 | T03, T09  | manual (T09); repositório em memória criado na T03             | parcial (falta T09) |
 | REQ-BE-22 | T02, T09  | `geral.test.js` › "REQ-BE-22: retorna 404 em JSON, em português, para rota inexistente"; "REQ-BE-22: erros dos endpoints em JSON" (T09) | parcial (falta T09) |
 | REQ-BE-23 | T06       | `criar.test.js` › "REQ-BE-23: formata o telefone"              | pendente |
 

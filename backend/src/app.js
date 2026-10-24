@@ -1,10 +1,13 @@
 import express from 'express';
 import cors from 'cors';
+import inscricoesRouter from './routes/inscricoes.js';
 
 const app = express();
 
 app.use(cors({ origin: 'http://localhost:5173', methods: ['GET', 'POST', 'DELETE'] }));
 app.use(express.json());
+
+app.use('/inscricoes', inscricoesRouter);
 
 // Nenhuma rota respondeu: devolve 404 em JSON em vez do HTML padrão do Express
 app.use((req, res) => {
