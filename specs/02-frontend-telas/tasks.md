@@ -24,7 +24,7 @@
   - **Depende de:** T01
   - **Commit sugerido:** `feat/frontend - rotas e cabeçalho`
 
-- [ ] **T03: Tela do evento**
+- [x] **T03: Tela do evento**
   - **Descrição:** criar `dados/evento.js` com o conteúdo do design, o `CartaoPalestrante` (círculo com as iniciais, nome, "cargo · empresa" e tema) e completar a página `Evento`: hero com nome, data, local, descrição e o botão "Inscreva-se" (`Link` para `/inscricao`), seguido da grade de palestrantes. Criar o `evento.css` mobile-first (palestrantes em 1, 2 e 4 colunas em base, ≥640px e ≥960px), conforme a seção de responsividade do design. Criar `tests/evento.test.jsx`.
   - **Requisitos:** REQ-FE-04, REQ-FE-05, REQ-FE-06, REQ-FE-31 (implementação; verificação em T11)
   - **Arquivos:** `frontend/src/dados/evento.js` (criar), `frontend/src/componentes/CartaoPalestrante.jsx` (criar), `frontend/src/paginas/Evento.jsx` (alterar), `frontend/src/estilos/evento.css` (criar), `frontend/tests/evento.test.jsx` (criar)
@@ -103,9 +103,9 @@
 | REQ-FE-01 | T02            | `navegacao.test.jsx` › "REQ-FE-01: cada caminho mostra a sua tela"; "REQ-FE-01: os links do cabeçalho trocam de tela" | implementado |
 | REQ-FE-02 | T02            | `navegacao.test.jsx` › "REQ-FE-02: o cabeçalho com os links para as 3 telas aparece em todas elas" | implementado |
 | REQ-FE-03 | T02            | `navegacao.test.jsx` › "REQ-FE-03: caminho desconhecido mostra \"Página não encontrada\" e o link volta para o evento" | implementado |
-| REQ-FE-04 | T03            | `evento.test.jsx` › "REQ-FE-04: ..."                                                   | pendente |
-| REQ-FE-05 | T03            | `evento.test.jsx` › "REQ-FE-05: ..."                                                   | pendente |
-| REQ-FE-06 | T03            | `evento.test.jsx` › "REQ-FE-06: ..."                                                   | pendente |
+| REQ-FE-04 | T03            | `evento.test.jsx` › "REQ-FE-04: mostra nome, data, local e descrição do evento" | implementado |
+| REQ-FE-05 | T03            | `evento.test.jsx` › "REQ-FE-05: mostra cada palestrante com nome, cargo e empresa, tema e iniciais" | implementado |
+| REQ-FE-06 | T03            | `evento.test.jsx` › "REQ-FE-06: o botão \"Inscreva-se\" leva à tela de inscrição" | implementado |
 | REQ-FE-07 | T06            | `inscricao.test.jsx` › "REQ-FE-07: ..."                                                | pendente |
 | REQ-FE-08 | T06            | `inscricao.test.jsx` › "REQ-FE-08: ..."                                                | pendente |
 | REQ-FE-09 | T05, T06       | `validacao.test.js` › "REQ-FE-09: ..."; `inscricao.test.jsx` › "REQ-FE-09: ..."        | pendente |

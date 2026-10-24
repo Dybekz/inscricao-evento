@@ -1,0 +1,122 @@
+/* Tela do evento: mobile-first (base 360px, ampliada em 640px e 960px) */
+
+.evento-hero {
+  padding: var(--espaco-4) var(--espaco-3);
+  border-radius: var(--raio);
+  background: linear-gradient(135deg, var(--cor-primaria) 0%, #8a3df5 100%);
+  color: #ffffff;
+  margin-bottom: var(--espaco-5);
+}
+
+.evento-titulo {
+  font-size: 2rem;
+  overflow-wrap: anywhere;
+}
+
+.evento-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+  margin: 0 0 var(--espaco-4);
+}
+
+.evento-info dt {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+}
+
+.evento-info dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+.evento-descricao {
+  margin: 0 0 var(--espaco-4);
+  max-width: 60ch;
+}
+
+/* Botão claro sobre o fundo roxo */
+.evento-botao {
+  background: #ffffff;
+  color: var(--cor-primaria);
+}
+
+.evento-botao:hover {
+  background: var(--cor-fundo);
+}
+
+.evento-grade {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--espaco-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.palestrante {
+  height: 100%;
+  padding: var(--espaco-4) var(--espaco-3);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+  text-align: center;
+}
+
+.palestrante-iniciais {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto var(--espaco-3);
+  border-radius: 50%;
+  background: var(--cor-primaria);
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.palestrante-nome {
+  font-size: 1.125rem;
+  margin-bottom: var(--espaco-1);
+}
+
+.palestrante-cargo {
+  margin: 0 0 var(--espaco-2);
+  color: var(--cor-texto-suave);
+  font-size: 0.9375rem;
+}
+
+.palestrante-tema {
+  margin: 0;
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  .evento-hero {
+    padding: var(--espaco-5);
+  }
+
+  .evento-info {
+    flex-direction: row;
+    gap: var(--espaco-5);
+  }
+
+  .evento-grade {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .evento-titulo {
+    font-size: 3rem;
+  }
+
+  .evento-grade {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
