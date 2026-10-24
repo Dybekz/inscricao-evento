@@ -1,0 +1,118 @@
+/* Tela de inscrição: largura total no celular, centralizada a partir de 640px */
+
+.inscricao-introducao {
+  margin: 0 0 var(--espaco-4);
+  color: var(--cor-texto-suave);
+}
+
+.inscricao-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-4);
+  padding: var(--espaco-4) var(--espaco-3);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background: var(--cor-superficie);
+}
+
+.inscricao-campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  min-width: 0;
+}
+
+.inscricao-campo > label,
+.inscricao-tipos legend {
+  font-weight: 600;
+}
+
+.inscricao-opcional {
+  font-weight: 400;
+  color: var(--cor-texto-suave);
+}
+
+.inscricao-campo input[type='text'],
+.inscricao-campo input[type='email'],
+.inscricao-campo input[type='tel'] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  font: inherit;
+  color: var(--cor-texto);
+  background: var(--cor-superficie);
+}
+
+.inscricao-campo input:focus-visible {
+  outline: 2px solid var(--cor-primaria);
+  outline-offset: 1px;
+}
+
+.inscricao-campo input[aria-invalid='true'],
+.inscricao-tipos[aria-invalid='true'] .inscricao-opcao {
+  border-color: var(--cor-erro);
+}
+
+/* Fieldset sem a moldura padrão do navegador */
+.inscricao-tipos {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.inscricao-tipos legend {
+  padding: 0;
+  margin-bottom: var(--espaco-2);
+}
+
+.inscricao-opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+}
+
+.inscricao-opcao {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  padding: 10px var(--espaco-3);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  cursor: pointer;
+}
+
+.inscricao-opcao:has(input:checked) {
+  border-color: var(--cor-primaria);
+  background: var(--cor-fundo);
+}
+
+.inscricao-opcao input {
+  accent-color: var(--cor-primaria);
+  margin: 0;
+}
+
+.inscricao-erro {
+  margin: 0;
+  color: var(--cor-erro);
+  font-size: 0.9375rem;
+}
+
+.inscricao-botao {
+  align-self: stretch;
+}
+
+@media (min-width: 640px) {
+  .inscricao {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .inscricao-formulario {
+    padding: var(--espaco-5);
+  }
+
+  .inscricao-botao {
+    align-self: flex-start;
+  }
+}

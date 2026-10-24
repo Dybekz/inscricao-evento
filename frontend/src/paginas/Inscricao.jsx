@@ -1,4 +1,136 @@
-// O formulário entra na T06
+import { useState } from 'react';
+import { validarFormulario } from '../validacao/inscricao.js';
+import '../estilos/inscricao.css';
+
+// tipoIngresso '' = nenhuma opção marcada (REQ-FE-08)
+const VALORES_INICIAIS = { nome: '', email: '', telefone: '', tipoIngresso: '' };
+
+function MensagemDeErro({ campo, erros }) {
+  if (!erros[campo]) {
+    return null;
+  }
+  return (
+    <p id={`erro-${campo}`} className="inscricao-erro">
+      {erros[campo]}
+    </p>
+  );
+}
+
+// Liga o campo à sua mensagem de erro, para leitores de tela anunciarem o problema
+function atributosDeErro(campo, erros) {
+  return erros[campo] ? { 'aria-invalid': true, 'aria-describedby': `erro-${campo}` } : {};
+}
+
 export default function Inscricao() {
-  return <h1>Inscrição</h1>;
+  const [valores, setValores] = useState(VALORES_INICIAIS);
+  const [erros, setErros] = useState({});
+
+  function alterar(evento) {
+    const { name, value } = evento.target;
+    setValores((anteriores) => ({ ...anteriores, [name]: value }));
+
+    // Ao alterar um campo, some só a mensagem dele (REQ-FE-13)
+    setErros((anteriores) => {
+      if (!(name in anteriores)) {
+        return anteriores;
+      }
+      const { [name]: _removido, ...restantes } = anteriores;
+      return restantes;
+    });
+  }
+
+  function enviar(evento) {
+    evento.preventDefault();
+
+    const errosEncontrados = validarFormulario(valores);
+    setErros(errosEncontrados);
+
+    // O envio para a API entra na T07
+  }
+
+  return (
+    <section className="inscricao">
+      <h1>Inscrição</h1>
+      <p className="inscricao-introducao">Preencha seus dados para garantir sua vaga no evento.</p>
+
+      {/* noValidate: valem só as nossas mensagens em português, não as do navegador */}
+      <form className="inscricao-formulario" onSubmit={enviar} noValidate>
+        <div className="inscricao-campo">
+          <label htmlFor="campo-nome">Nome</label>
+          <input
+            id="campo-nome"
+            name="nome"
+            type="text"
+            autoComplete="name"
+            value={valores.nome}
+            onChange={alterar}
+            {...atributosDeErro('nome', erros)}
+          />
+          <MensagemDeErro campo="nome" erros={erros} />
+        </div>
+
+        <div className="inscricao-campo">
+          <label htmlFor="campo-email">E-mail</label>
+          <input
+            id="campo-email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            value={valores.email}
+            onChange={alterar}
+            {...atributosDeErro('email', erros)}
+          />
+          <MensagemDeErro campo="email" erros={erros} />
+        </div>
+
+        <div className="inscricao-campo">
+          <label htmlFor="campo-telefone">
+            Telefone <span className="inscricao-opcional">(opcional)</span>
+          </label>
+          <input
+            id="campo-telefone"
+            name="telefone"
+            type="tel"
+            autoComplete="tel"
+            placeholder="(11) 99999-9999"
+            value={valores.telefone}
+            onChange={alterar}
+            {...atributosDeErro('telefone', erros)}
+          />
+          <MensagemDeErro campo="telefone" erros={erros} />
+        </div>
+
+        <fieldset className="inscricao-campo inscricao-tipos" {...atributosDeErro('tipoIngresso', erros)}>
+          <legend>Tipo de ingresso</legend>
+          <div className="inscricao-opcoes">
+            <label className="inscricao-opcao">
+              <input
+                type="radio"
+                name="tipoIngresso"
+                value="estudante"
+                checked={valores.tipoIngresso === 'estudante'}
+                onChange={alterar}
+              />
+              Estudante
+            </label>
+            <label className="inscricao-opcao">
+              <input
+                type="radio"
+                name="tipoIngresso"
+                value="profissional"
+                checked={valores.tipoIngresso === 'profissional'}
+                onChange={alterar}
+              />
+              Profissional
+            </label>
+          </div>
+          <MensagemDeErro campo="tipoIngresso" erros={erros} />
+        </fieldset>
+
+        <button type="submit" className="botao inscricao-botao">
+          Enviar inscrição
+        </button>
+      </form>
+    </section>
+  );
 }

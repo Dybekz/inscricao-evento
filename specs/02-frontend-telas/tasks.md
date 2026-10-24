@@ -48,7 +48,7 @@
   - **Depende de:** T01
   - **Commit sugerido:** `feat/frontend - regras de validação do formulário`
 
-- [ ] **T06: Formulário de inscrição e validação no envio**
+- [x] **T06: Formulário de inscrição e validação no envio**
   - **Descrição:** completar a página `Inscricao` com o formulário controlado do design (`<form noValidate>`, campos com rótulo, telefone "(opcional)" com o exemplo `(11) 99999-9999`, tipo de ingresso em `fieldset` com dois radios sem padrão, mensagens abaixo de cada campo com `aria-describedby` e `aria-invalid`). No envio, rodar `validarFormulario` e, havendo erros, exibi-los todos sem chamar a API. Ao alterar um campo, remover só o erro dele. Nesta tarefa, o envio de dados válidos ainda não chama a API. Criar o `inscricao.css` e `tests/inscricao.test.jsx`, já com `vi.mock` da camada de API (DT-10).
   - **Requisitos:** REQ-FE-07, REQ-FE-08, REQ-FE-09, REQ-FE-10, REQ-FE-11, REQ-FE-12, REQ-FE-13, REQ-FE-32 (formulário; verificação em T11)
   - **Arquivos:** `frontend/src/paginas/Inscricao.jsx` (alterar), `frontend/src/estilos/inscricao.css` (criar), `frontend/tests/inscricao.test.jsx` (criar)
@@ -106,13 +106,13 @@
 | REQ-FE-04 | T03            | `evento.test.jsx` › "REQ-FE-04: mostra nome, data, local e descrição do evento" | implementado |
 | REQ-FE-05 | T03            | `evento.test.jsx` › "REQ-FE-05: mostra cada palestrante com nome, cargo e empresa, tema e iniciais" | implementado |
 | REQ-FE-06 | T03            | `evento.test.jsx` › "REQ-FE-06: o botão \"Inscreva-se\" leva à tela de inscrição" | implementado |
-| REQ-FE-07 | T06            | `inscricao.test.jsx` › "REQ-FE-07: ..."                                                | pendente |
-| REQ-FE-08 | T06            | `inscricao.test.jsx` › "REQ-FE-08: ..."                                                | pendente |
-| REQ-FE-09 | T05, T06       | `validacao.test.js` › "REQ-FE-09: aceita valores válidos, inclusive sem telefone, devolvendo objeto vazio"; "REQ-FE-09: nome vazio ou só com espaços gera \"O nome é obrigatório\""; "REQ-FE-09: e-mail vazio ou só com espaços gera \"O e-mail é obrigatório\""; "REQ-FE-09: tipo de ingresso não escolhido gera \"Escolha o tipo de ingresso\""; "REQ-FE-09: devolve todos os campos obrigatórios de uma vez"; `inscricao.test.jsx` › "REQ-FE-09: ..."        | parcial (T05) |
-| REQ-FE-10 | T05, T06       | `validacao.test.js` › "REQ-FE-10: e-mail fora do formato texto@texto.texto gera \"Informe um e-mail válido\""; "REQ-FE-10: aceita e-mail com espaços nas pontas"; `inscricao.test.jsx` › "REQ-FE-10: ..."        | parcial (T05) |
-| REQ-FE-11 | T05, T06       | `validacao.test.js` › "REQ-FE-11: telefone com letras, símbolos ou quantidade errada de dígitos gera mensagem"; "REQ-FE-11: aceita telefone vazio, só com espaços ou com 10 e 11 dígitos em qualquer formato"; `inscricao.test.jsx` › "REQ-FE-11: ..."        | parcial (T05) |
-| REQ-FE-12 | T06            | `inscricao.test.jsx` › "REQ-FE-12: ..."                                                | pendente |
-| REQ-FE-13 | T06            | `inscricao.test.jsx` › "REQ-FE-13: ..."                                                | pendente |
+| REQ-FE-07 | T06            | `inscricao.test.jsx` › "REQ-FE-07: mostra os campos com rótulo e o telefone opcional com exemplo de formato"                                                | implementado |
+| REQ-FE-08 | T06            | `inscricao.test.jsx` › "REQ-FE-08: tipo de ingresso tem duas opções exclusivas, nenhuma marcada no início"                                                | implementado |
+| REQ-FE-09 | T05, T06       | `validacao.test.js` › "REQ-FE-09: aceita valores válidos, inclusive sem telefone, devolvendo objeto vazio"; "REQ-FE-09: nome vazio ou só com espaços gera \"O nome é obrigatório\""; "REQ-FE-09: e-mail vazio ou só com espaços gera \"O e-mail é obrigatório\""; "REQ-FE-09: tipo de ingresso não escolhido gera \"Escolha o tipo de ingresso\""; "REQ-FE-09: devolve todos os campos obrigatórios de uma vez"; `inscricao.test.jsx` › "REQ-FE-09: obrigatório vazio ou só com espaços mostra a mensagem junto ao campo e não chama a API"        | implementado |
+| REQ-FE-10 | T05, T06       | `validacao.test.js` › "REQ-FE-10: e-mail fora do formato texto@texto.texto gera \"Informe um e-mail válido\""; "REQ-FE-10: aceita e-mail com espaços nas pontas"; `inscricao.test.jsx` › "REQ-FE-10: e-mail fora do formato mostra \"Informe um e-mail válido\" e não chama a API"        | implementado |
+| REQ-FE-11 | T05, T06       | `validacao.test.js` › "REQ-FE-11: telefone com letras, símbolos ou quantidade errada de dígitos gera mensagem"; "REQ-FE-11: aceita telefone vazio, só com espaços ou com 10 e 11 dígitos em qualquer formato"; `inscricao.test.jsx` › "REQ-FE-11: telefone inválido mostra a mensagem junto ao campo e não chama a API"        | implementado |
+| REQ-FE-12 | T06            | `inscricao.test.jsx` › "REQ-FE-12: enviar o formulário vazio mostra as 3 mensagens de uma vez"                                                | implementado |
+| REQ-FE-13 | T06            | `inscricao.test.jsx` › "REQ-FE-13: alterar um campo com erro remove só a mensagem dele"                                                | implementado |
 | REQ-FE-14 | T04, T07       | `api.test.js` › "REQ-FE-14: criarInscricao envia POST /inscricoes em JSON com os 4 campos e devolve a inscrição criada"; `inscricao.test.jsx` › "REQ-FE-14: ..." | pendente |
 | REQ-FE-15 | T07            | `inscricao.test.jsx` › "REQ-FE-15: ..."                                                | pendente |
 | REQ-FE-16 | T08            | `inscricao.test.jsx` › "REQ-FE-16: ..."                                                | pendente |
