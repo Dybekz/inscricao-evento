@@ -1,7 +1,7 @@
 > **Feature:** 03-entrega
 > **Documento:** design
-> **Status:** rascunho
-> **Aprovado em:**
+> **Status:** aprovado
+> **Aprovado em:** 2026-10-25
 
 # Design — 03-entrega
 

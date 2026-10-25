@@ -1,7 +1,7 @@
 > **Feature:** 03-entrega
 > **Documento:** tarefas
-> **Status:** rascunho
-> **Aprovado em:**
+> **Status:** aprovado
+> **Aprovado em:** 2026-10-25
 > **Revisão:** pendente
 
 # Tarefas — 03-entrega
