@@ -16,7 +16,7 @@
   - **Depende de:** —
   - **Commit sugerido:** `docs/docs - instruções para rodar o projeto`
 
-- [ ] **T02: Verificar o README num clone limpo**
+- [x] **T02: Verificar o README num clone limpo**
   - **Descrição:** com o README commitado e as portas `3001` e `5173` livres, clonar o repositório local numa pasta temporária (DT-05) e seguir só o README: `npm install` e `npm test` em `backend/` e em `frontend/`; subir a API (`npm run dev`) e conferir a saída `API rodando em http://localhost:3001` e `GET /inscricoes` → `200`; subir o site (`npm run dev`) e conferir `http://localhost:5173` → `200`. A usuária, no navegador, cria uma inscrição, vê na lista e exclui, e confere a tela do evento no DevTools em 360, 640, 960 e 1280px (DT-06). Registrar os resultados na matriz. Se algum passo do README falhar, parar, corrigir o README e repetir a verificação. Ao final, parar os servidores e apagar a pasta temporária.
   - **Requisitos:** REQ-EN-05, REQ-EN-06, REQ-EN-07, REQ-EN-12, REQ-EN-16
   - **Arquivos:** `specs/03-entrega/tasks.md` (alterar: registro da verificação); `README.md` (alterar, só se a verificação apontar erro)
@@ -42,18 +42,18 @@ Todos os requisitos desta feature são de verificação manual (não há código
 | REQ-EN-02 | T01       | seções de título, descrição e tecnologias presentes                                                         | implementado |
 | REQ-EN-03 | T01       | pré-requisitos com Node 22.22.2+ ou 24.15+, npm, Git e a versão testada                                     | implementado |
 | REQ-EN-04 | T01, T03  | comando `git clone` com a URL; clone real pela URL em T03                                                   | README pronto (T01); clone real em T03 |
-| REQ-EN-05 | T01, T02  | comandos do backend; no clone, a API sobe com a saída esperada e `GET /inscricoes` → `200`                  | README pronto (T01); verificação em T02 |
-| REQ-EN-06 | T01, T02  | comandos do frontend; no clone, `http://localhost:5173` → `200`                                             | README pronto (T01); verificação em T02 |
-| REQ-EN-07 | T01, T02  | comando de testes; no clone, `npm test` passa nos dois pacotes                                              | README pronto (T01); verificação em T02 |
+| REQ-EN-05 | T01, T02  | comandos do backend; no clone, a API sobe com a saída esperada e `GET /inscricoes` → `200`                  | verificado em 2026-10-25: no clone limpo, `npm install` e `npm run dev` em `backend/` imprimiram `API rodando em http://localhost:3001` e `GET /inscricoes` → `200` (`[]`) |
+| REQ-EN-06 | T01, T02  | comandos do frontend; no clone, `http://localhost:5173` → `200`                                             | verificado em 2026-10-25: no clone limpo, `npm install` e `npm run dev` em `frontend/` subiram o Vite em `http://localhost:5173` → `200` |
+| REQ-EN-07 | T01, T02  | comando de testes; no clone, `npm test` passa nos dois pacotes                                              | verificado em 2026-10-25: no clone limpo, `npm test` passou no backend (26/26) e no frontend (50/50) |
 | REQ-EN-08 | T01       | `PORT` e `VITE_API_URL` com padrões, exemplos em bash e PowerShell e aviso da porta `5173`, conferidos no código | implementado |
 | REQ-EN-09 | T01       | endpoints, modelo, regras e formato de erro conferidos com os contratos de `01-api-inscricoes`              | implementado |
 | REQ-EN-10 | T01       | aviso de dados em memória presente                                                                          | implementado |
 | REQ-EN-11 | T01       | seção sobre `specs/` e busca do DT-04 sem resultado                                                         | implementado |
-| REQ-EN-12 | T02       | clone limpo seguindo só o README; fluxo de inscrever, listar e excluir feito pela usuária                   | pendente |
+| REQ-EN-12 | T02       | clone limpo seguindo só o README; fluxo de inscrever, listar e excluir feito pela usuária                   | verificado em 2026-10-25: clone do repositório local numa pasta temporária seguindo só o README; instalação, testes, API e site ok; a usuária criou, listou e excluiu uma inscrição pelo navegador |
 | REQ-EN-13 | T03       | API do GitHub sem login com `"visibility": "public"`; clone pela URL sem login                              | pendente |
 | REQ-EN-14 | T03       | depois do push, `main` local igual a `origin/main`                                                          | pendente |
 | REQ-EN-15 | T03       | `git ls-files` sem `node_modules/`, `dist/` ou `.env`                                                       | pendente |
-| REQ-EN-16 | T02       | DevTools em 360, 640, 960 e 1280px: 1, 2, 4 e 4 colunas, sem rolagem horizontal                             | pendente |
+| REQ-EN-16 | T02       | DevTools em 360, 640, 960 e 1280px: 1, 2, 4 e 4 colunas, sem rolagem horizontal                             | verificado em 2026-10-25 (usuária, DevTools, no clone): palestrantes em 1, 2, 4 e 4 colunas em 360, 640, 960 e 1280px, sem rolagem horizontal |
 
 ## Registro de revisão
 
