@@ -52,7 +52,7 @@ Todos os requisitos desta feature são de verificação manual (não há código
 | REQ-EN-12 | T02       | clone limpo seguindo só o README; fluxo de inscrever, listar e excluir feito pela usuária                   | verificado em 2026-10-25: clone do repositório local numa pasta temporária seguindo só o README; instalação, testes, API e site ok; a usuária criou, listou e excluiu uma inscrição pelo navegador |
 | REQ-EN-13 | T03       | API do GitHub sem login com `"visibility": "public"`; clone pela URL sem login                              | pendente |
 | REQ-EN-14 | T03       | depois do push, `main` local igual a `origin/main`                                                          | pendente |
-| REQ-EN-15 | T03       | `git ls-files` sem `node_modules/`, `dist/` ou `.env`                                                       | pendente |
+| REQ-EN-15 | T03       | `git ls-files` sem `node_modules/`, `dist/` ou `.env`                                                       | verificado em 2026-10-25: `git ls-files` (53 arquivos) sem nenhum caminho com `node_modules/`, `dist/` ou `.env` |
 | REQ-EN-16 | T02       | DevTools em 360, 640, 960 e 1280px: 1, 2, 4 e 4 colunas, sem rolagem horizontal                             | verificado em 2026-10-25 (usuária, DevTools, no clone): palestrantes em 1, 2, 4 e 4 colunas em 360, 640, 960 e 1280px, sem rolagem horizontal |
 
 ## Registro de revisão
