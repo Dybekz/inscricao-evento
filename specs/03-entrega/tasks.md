@@ -40,7 +40,7 @@
   - **Depende de:** T03
   - **Commit sugerido:** `docs/docs - README enxuto`
 
-- [ ] **T05: Corrigir a versão mínima do Node no README**
+- [x] **T05: Corrigir a versão mínima do Node no README**
   - **Descrição:** no `README.md`, trocar "Node.js 22.22+" por "Node.js 22.22.2+" na linha de pré-requisitos, para bater com o DT-01 (o `jsdom` exige `^22.22.2` na linha 22). Lacuna encontrada na revisão de 2026-10-25.
   - **Requisitos:** REQ-EN-03
   - **Arquivos:** `README.md` (alterar)
@@ -56,7 +56,7 @@ Todos os requisitos desta feature são de verificação manual (não há código
 | --------- | --------- | ---------------------------------------------------------------------------------------------------------- | -------- |
 | REQ-EN-01 | T01, T04   | `README.md` na raiz, em português                                                                           | conforme (revisão 2026-10-25); implementado; README enxuto (T04) conferido em 2026-10-25: mesmos comandos da T02, valores conferidos com o código, busca do DT-04 sem resultado |
 | REQ-EN-02 | T01, T04   | título, descrição e linha de stack presentes                                                         | conforme (revisão 2026-10-25); implementado; README enxuto (T04) conferido em 2026-10-25: mesmos comandos da T02, valores conferidos com o código, busca do DT-04 sem resultado |
-| REQ-EN-03 | T01, T04, T05  | pré-requisitos com Node 22.22.2+ ou 24.15+, npm, Git e a versão testada                                     | divergente na revisão de 2026-10-25: README diz "22.22+", o mínimo é 22.22.2 (DT-01); correção em T05. implementado; README enxuto (T04) conferido em 2026-10-25: mesmos comandos da T02, valores conferidos com o código, busca do DT-04 sem resultado |
+| REQ-EN-03 | T01, T04, T05  | pré-requisitos com Node 22.22.2+ ou 24.15+, npm, Git e a versão testada                                     | conforme depois da T05 (2026-10-25): README diz "Node.js 22.22.2+ ou 24.15+"; na revisão estava "22.22+". implementado; README enxuto (T04) conferido em 2026-10-25: mesmos comandos da T02, valores conferidos com o código, busca do DT-04 sem resultado |
 | REQ-EN-04 | T01, T03, T04 | comando `git clone` com a URL; clone real pela URL em T03                                                   | conforme (revisão 2026-10-25); verificado em 2026-10-25: `git clone https://github.com/Dybekz/inscricao-evento.git`, copiado do README, clonou sem credenciais e trouxe o README novo (mesmo blob `60b4e85` do commit local); README enxuto (T04) conferido em 2026-10-25: mesmos comandos da T02, valores conferidos com o código, busca do DT-04 sem resultado |
 | REQ-EN-05 | T01, T02, T04 | comandos do backend; no clone, a API sobe com a saída esperada e `GET /inscricoes` → `200`                  | conforme (revisão 2026-10-25); verificado em 2026-10-25: no clone limpo, `npm install` e `npm run dev` em `backend/` imprimiram `API rodando em http://localhost:3001` e `GET /inscricoes` → `200` (`[]`); README enxuto (T04) conferido em 2026-10-25: mesmos comandos da T02, valores conferidos com o código, busca do DT-04 sem resultado |
 | REQ-EN-06 | T01, T02, T04 | comandos do frontend; no clone, `http://localhost:5173` → `200`                                             | conforme (revisão 2026-10-25); verificado em 2026-10-25: no clone limpo, `npm install` e `npm run dev` em `frontend/` subiram o Vite em `http://localhost:5173` → `200`; README enxuto (T04) conferido em 2026-10-25: mesmos comandos da T02, valores conferidos com o código, busca do DT-04 sem resultado |
@@ -80,4 +80,5 @@ Todos os requisitos desta feature são de verificação manual (não há código
 - **Requisitos:** 15 de 16 conformes. REQ-EN-16 continua valendo pela verificação da T02, já que o frontend não mudou desde então.
 - **Lacuna (divergência):** REQ-EN-03 pede a versão mínima exigida pelas dependências. O README (linha 13) diz "Node.js 22.22+", mas o mínimo na linha 22 é 22.22.2 (`jsdom` `^22.22.2`, DT-01). A linha 3 da tabela "Estrutura do README" do design tinha o mesmo erro e foi corrigida. Correção do README na T05.
 - **Escopo extra e convenções:** nenhum escopo extra; commits no formato do projeto; textos em português.
-- **Resultado:** revisão não aprovada até a T05. Depois do commit da revisão final, reconferir REQ-EN-14 (local igual ao remoto) com o push.
+- **Correção:** T05 feita em 2026-10-25; a linha 13 do README agora diz "Node.js 22.22.2+ ou 24.15+ (testado no 24.22.1), npm e Git". Com isso, 16 de 16 requisitos conformes.
+- **Resultado:** sem lacunas depois da T05; aguardando aprovação da revisão. Depois do commit da revisão final, reconferir REQ-EN-14 (local igual ao remoto) com o push.

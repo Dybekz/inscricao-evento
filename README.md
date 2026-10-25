@@ -10,7 +10,7 @@ O projeto foi feito a partir de specs: em `specs/`, cada parte (API, telas e ent
 
 ## Como rodar
 
-Pré-requisitos: Node.js 22.22+ ou 24.15+ (testado no 24.22.1), npm e Git.
+Pré-requisitos: Node.js 22.22.2+ ou 24.15+ (testado no 24.22.1), npm e Git.
 
 ```bash
 git clone https://github.com/Dybekz/inscricao-evento.git
