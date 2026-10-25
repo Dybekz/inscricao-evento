@@ -24,7 +24,7 @@
   - **Depende de:** T01
   - **Commit sugerido:** `docs/specs - verifica o README num clone limpo`
 
-- [ ] **T03: Conferir e publicar o repositório**
+- [x] **T03: Conferir e publicar o repositório**
   - **Descrição:** conferir que `git ls-files` não lista nenhum caminho com `node_modules/`, `dist/` ou `.env` (REQ-EN-15). Registrar o resultado na matriz e commitar. Quando a usuária pedir, fazer o push do `main`. Depois do push: conferir `git status -sb` sem `ahead` e `git rev-parse main` igual a `git rev-parse origin/main` (REQ-EN-14); consultar `https://api.github.com/repos/Dybekz/inscricao-evento` sem login e ver `"visibility": "public"`, e rodar o `git clone` exatamente como está no README numa pasta temporária, que deve funcionar sem login e trazer o `README.md` novo (REQ-EN-13, REQ-EN-04). Apagar a pasta temporária.
   - **Requisitos:** REQ-EN-04 (comando real), REQ-EN-13, REQ-EN-14, REQ-EN-15
   - **Arquivos:** `specs/03-entrega/tasks.md` (alterar: registro da verificação)
@@ -41,7 +41,7 @@ Todos os requisitos desta feature são de verificação manual (não há código
 | REQ-EN-01 | T01       | `README.md` na raiz, em português                                                                           | implementado |
 | REQ-EN-02 | T01       | seções de título, descrição e tecnologias presentes                                                         | implementado |
 | REQ-EN-03 | T01       | pré-requisitos com Node 22.22.2+ ou 24.15+, npm, Git e a versão testada                                     | implementado |
-| REQ-EN-04 | T01, T03  | comando `git clone` com a URL; clone real pela URL em T03                                                   | README pronto (T01); clone real em T03 |
+| REQ-EN-04 | T01, T03  | comando `git clone` com a URL; clone real pela URL em T03                                                   | verificado em 2026-10-25: `git clone https://github.com/Dybekz/inscricao-evento.git`, copiado do README, clonou sem credenciais e trouxe o README novo (mesmo blob `60b4e85` do commit local) |
 | REQ-EN-05 | T01, T02  | comandos do backend; no clone, a API sobe com a saída esperada e `GET /inscricoes` → `200`                  | verificado em 2026-10-25: no clone limpo, `npm install` e `npm run dev` em `backend/` imprimiram `API rodando em http://localhost:3001` e `GET /inscricoes` → `200` (`[]`) |
 | REQ-EN-06 | T01, T02  | comandos do frontend; no clone, `http://localhost:5173` → `200`                                             | verificado em 2026-10-25: no clone limpo, `npm install` e `npm run dev` em `frontend/` subiram o Vite em `http://localhost:5173` → `200` |
 | REQ-EN-07 | T01, T02  | comando de testes; no clone, `npm test` passa nos dois pacotes                                              | verificado em 2026-10-25: no clone limpo, `npm test` passou no backend (26/26) e no frontend (50/50) |
@@ -50,8 +50,8 @@ Todos os requisitos desta feature são de verificação manual (não há código
 | REQ-EN-10 | T01       | aviso de dados em memória presente                                                                          | implementado |
 | REQ-EN-11 | T01       | seção sobre `specs/` e busca do DT-04 sem resultado                                                         | implementado |
 | REQ-EN-12 | T02       | clone limpo seguindo só o README; fluxo de inscrever, listar e excluir feito pela usuária                   | verificado em 2026-10-25: clone do repositório local numa pasta temporária seguindo só o README; instalação, testes, API e site ok; a usuária criou, listou e excluiu uma inscrição pelo navegador |
-| REQ-EN-13 | T03       | API do GitHub sem login com `"visibility": "public"`; clone pela URL sem login                              | pendente |
-| REQ-EN-14 | T03       | depois do push, `main` local igual a `origin/main`                                                          | pendente |
+| REQ-EN-13 | T03       | API do GitHub sem login com `"visibility": "public"`; clone pela URL sem login                              | verificado em 2026-10-25: `api.github.com/repos/Dybekz/inscricao-evento` sem login → `"visibility": "public"`, `"private": false`; clone pela URL sem credenciais funcionou |
+| REQ-EN-14 | T03       | depois do push, `main` local igual a `origin/main`                                                          | verificado em 2026-10-25: depois do push, `git status -sb` → `main...origin/main` sem `ahead`; `main` e `origin/main` em `6a910e1`; a API do GitHub mostra o mesmo commit no `main`. Reconferir depois do commit da revisão |
 | REQ-EN-15 | T03       | `git ls-files` sem `node_modules/`, `dist/` ou `.env`                                                       | verificado em 2026-10-25: `git ls-files` (53 arquivos) sem nenhum caminho com `node_modules/`, `dist/` ou `.env` |
 | REQ-EN-16 | T02       | DevTools em 360, 640, 960 e 1280px: 1, 2, 4 e 4 colunas, sem rolagem horizontal                             | verificado em 2026-10-25 (usuária, DevTools, no clone): palestrantes em 1, 2, 4 e 4 colunas em 360, 640, 960 e 1280px, sem rolagem horizontal |
 
