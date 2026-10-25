@@ -2,7 +2,7 @@
 > **Documento:** tarefas
 > **Status:** aprovado
 > **Aprovado em:** 2026-10-25
-> **Revisão:** pendente
+> **Revisão:** aprovada
 
 # Tarefas — 03-entrega
 
@@ -82,3 +82,11 @@ Todos os requisitos desta feature são de verificação manual (não há código
 - **Escopo extra e convenções:** nenhum escopo extra; commits no formato do projeto; textos em português.
 - **Correção:** T05 feita em 2026-10-25; a linha 13 do README agora diz "Node.js 22.22.2+ ou 24.15+ (testado no 24.22.1), npm e Git". Com isso, 16 de 16 requisitos conformes.
 - **Resultado:** sem lacunas depois da T05; aguardando aprovação da revisão. Depois do commit da revisão final, reconferir REQ-EN-14 (local igual ao remoto) com o push.
+
+### 2026-10-25 (depois da T12 da 02)
+
+- **Mudança no front:** a T12 de `02-frontend-telas` trocou o local do evento em `dados/evento.js`; nenhum outro arquivo de `backend/` ou `frontend/` mudou.
+- **Testes:** backend 26/26 e frontend 50/50 passando.
+- **REQ-EN-16:** continua conforme. O CSS não mudou e o texto novo do local é mais curto; a usuária conferiu a tela do evento no navegador.
+- **README:** não cita o local, então não precisa mudar.
+- **Resultado:** 16 de 16 requisitos conformes, sem lacunas. Revisão aprovada pela usuária em 2026-10-25. REQ-EN-14 reconferido depois do push final.
