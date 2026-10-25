@@ -28,21 +28,14 @@ Nenhum arquivo de `backend/`, `frontend/` ou das specs das features 01 e 02 é a
 
 ### Estrutura do README
 
-Seções na ordem em que o leitor precisa delas. O conteúdo de cada seção sai das specs já aprovadas, para que o README não contradiga o código.
+Versão enxuta, pensada para leitura rápida (revisão de 2026-10-25, a pedido da usuária, depois de uma prévia num branch de teste). Seções na ordem abaixo. O conteúdo sai das specs já aprovadas e do código, para que o README não contradiga a aplicação. Os comandos ficam em linhas separadas, sem `&&`, porque o PowerShell 5.1 (padrão do Windows) não aceita esse operador.
 
-| #  | Seção                         | Conteúdo                                                                                                                                                                                                  | Fonte do conteúdo                     | Requisitos            |
-| -- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- | --------------------- |
-| 1  | Título e descrição            | `# Conecta Tech 2027 — Site de evento com inscrições`. Duas ou três frases: site que divulga um evento fictício de tecnologia e recebe inscrições; três telas (evento, inscrição, inscritos).              | `frontend/src/dados/evento.js`; enunciado | REQ-EN-01, REQ-EN-02 |
-| 2  | Tecnologias                   | Lista curta: backend Node.js + Express 5, dados em memória; frontend React 19 + Vite + React Router; testes com Vitest, Supertest e React Testing Library.                                                  | `package.json` dos dois pacotes       | REQ-EN-02             |
-| 3  | Pré-requisitos                | Node.js 22 (22.22.2 ou mais nova) ou 24 (24.15 ou mais nova), npm (vem com o Node) e Git. Linha "Testado com Node.js 24.22.1 e npm 11.19.1".                                                               | DT-01                                 | REQ-EN-03             |
-| 4  | Como rodar → Clonar           | `git clone https://github.com/Dybekz/inscricao-evento.git` e `cd inscricao-evento`.                                                                                                                       | D-09                                  | REQ-EN-04             |
-| 5  | Como rodar → Backend          | Terminal 1: `cd backend`, `npm install`, `npm run dev` (ou `npm start`). Saída esperada: `API rodando em http://localhost:3001`.                                                                          | DT-07 de 01; `backend/src/server.js`  | REQ-EN-05             |
-| 6  | Como rodar → Frontend         | Terminal 2 (com o backend ainda rodando): `cd frontend`, `npm install`, `npm run dev`. Abrir `http://localhost:5173`. Aviso: sem a API rodando, as telas de inscrição e de inscritos mostram a mensagem de servidor fora do ar. | DT-09 de 02; REQ-FE-19, REQ-FE-24     | REQ-EN-06             |
-| 7  | Testes                        | Em cada pasta (`backend/` e `frontend/`): `npm test`. Os testes não precisam da API nem do site rodando.                                                                                                   | Seção 9 das regras do projeto; DT-10 de 02 | REQ-EN-07        |
-| 8  | Configuração                  | Tabela com `PORT` (backend, padrão `3001`) e `VITE_API_URL` (frontend, padrão `http://localhost:3001`), com um exemplo de uso em bash e em PowerShell (DT-03). Aviso: o site precisa rodar na porta `5173`, a única liberada pelo CORS da API; se ela estiver ocupada, o Vite para com erro em vez de trocar de porta. Se a API mudar de porta, o front precisa receber o novo endereço em `VITE_API_URL`. | REQ-BE-19, REQ-BE-20, REQ-FE-29, REQ-FE-30 | REQ-EN-08 |
-| 9  | API                           | Tabela dos 3 endpoints (método, rota, o que faz, status de sucesso). Exemplo do modelo em JSON. Regras: `nome`, `email` e `tipoIngresso` obrigatórios; `telefone` opcional; `tipoIngresso` aceita `"estudante"` ou `"profissional"`; e-mail duplicado → `400` com `{ "erro": "E-mail já cadastrado" }`. Formato do erro de validação com `campos`. | Contratos de 01 (ver abaixo)          | REQ-EN-09             |
-| 10 | Dados em memória              | Aviso, dentro da seção API ou logo depois: as inscrições ficam num array em memória e somem quando a API é reiniciada.                                                                                     | DT-01 de 01                           | REQ-EN-10             |
-| 11 | Como o projeto foi organizado | Duas ou três frases: o projeto foi desenvolvido por specs, em três partes (`01-api-inscricoes`, `02-frontend-telas`, `03-entrega`); em `specs/<parte>/` ficam `requirements.md`, `design.md` e `tasks.md`, seguindo as regras do projeto. Sem citar o nome do arquivo de regras nem ferramentas (DT-04). | D-04, D-05                            | REQ-EN-11             |
+| #  | Seção        | Conteúdo                                                                                                                                                                                                                                         | Fonte do conteúdo                                   | Requisitos                       |
+| -- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- | -------------------------------- |
+| 1  | Cabeçalho    | Título `# Site Inscrição de Eventos`. Parágrafo: "Site para divulgação de eventos e recebimento de inscrições. São três telas: a página do evento (com data, local, descrição e palestrantes), o formulário de inscrição e a lista de inscritos, com opção de excluir. O frontend conversa com uma API própria, que guarda as inscrições." (texto da usuária). Linha **Stack:** Node.js + Express 5 · React 19 + Vite + React Router · Vitest, Supertest e React Testing Library. | texto da usuária; `package.json` dos dois pacotes   | REQ-EN-01, REQ-EN-02             |
+| 2  | Organização  | Uma frase: o projeto foi feito a partir de specs; em `specs/`, cada parte (API, telas e entrega) tem requisitos, design e tarefas, aprovados antes do código, seguindo as regras do projeto. Sem citar o nome do arquivo de regras nem ferramentas (DT-04). | D-04, D-05                                          | REQ-EN-11                        |
+| 3  | Como rodar   | Pré-requisitos numa linha: Node.js 22.22+ ou 24.15+ (testado no 24.22.1), npm e Git (DT-01). Bloco de clone (`git clone https://github.com/Dybekz/inscricao-evento.git`, `cd inscricao-evento`). **Terminal 1, API** (`http://localhost:3001`): `cd backend`, `npm install`, `npm run dev`. **Terminal 2, site** (`http://localhost:5173`), com a API rodando: `cd frontend`, `npm install`, `npm run dev`. Linha de testes: `npm test` dentro de `backend/` ou `frontend/`. Nota em citação (`>`): dados em memória somem quando a API reinicia; o site precisa rodar na porta `5173`, a única liberada pelo CORS; `PORT` (padrão `3001`) muda a porta da API e `VITE_API_URL` (padrão `http://localhost:3001`) aponta o site para ela (DT-03). | DT-01; DT-07 de 01; DT-09 de 02; REQ-BE-19, REQ-BE-20, REQ-FE-29, REQ-FE-30 | REQ-EN-03, REQ-EN-04, REQ-EN-05, REQ-EN-06, REQ-EN-07, REQ-EN-08, REQ-EN-10 |
+| 4  | API          | Tabela dos 3 endpoints (método, rota, descrição, status de sucesso `200`, `201`, `204`). Exemplo do modelo em JSON. Uma frase de regras: `nome`, `email` e `tipoIngresso` (`"estudante"` ou `"profissional"`) obrigatórios; `telefone` opcional; campo inválido → `400` com `{ "erro": "Dados inválidos", "campos": { ... } }`; e-mail já cadastrado → `400` com `{ "erro": "E-mail já cadastrado" }`. | Contratos de 01 (ver abaixo)                        | REQ-EN-09                        |
 
 ## Contratos da API
 
@@ -93,12 +86,10 @@ Não se aplica: nenhum componente ou rota é criado ou alterado. A responsividad
 - **Justificativa:** o projeto é pequeno e os passos cabem numa página; um só arquivo evita instruções duplicadas e divergentes.
 - **Requisitos relacionados:** REQ-EN-01, REQ-EN-05, REQ-EN-06.
 
-### DT-03: Variáveis de ambiente passadas na linha de comando
+### DT-03: Variáveis de ambiente citadas, sem arquivo `.env`
 - **Contexto:** REQ-EN-08 pede explicar `PORT` e `VITE_API_URL`. Quem avalia pode usar Linux, macOS ou Windows.
-- **Opções consideradas:** (a) sugerir um arquivo `.env`/`.env.local`; (b) mostrar a variável na linha de comando, em bash e em PowerShell.
-- **Decisão:** (b). Exemplos:
-  - bash: `PORT=4000 npm run dev` e `VITE_API_URL=http://localhost:4000 npm run dev`
-  - PowerShell: `$env:PORT=4000; npm run dev` e `$env:VITE_API_URL="http://localhost:4000"; npm run dev`
+- **Opções consideradas:** (a) sugerir um arquivo `.env`/`.env.local`; (b) mostrar a variável na linha de comando, em bash e em PowerShell; (c) só citar as variáveis e os padrões, sem exemplos.
+- **Decisão:** nenhum arquivo `.env` é sugerido. Na versão enxuta do README, as variáveis aparecem só na nota da seção "Como rodar", com o nome, para que servem e o padrão, sem exemplos de comando por shell.
 - **Justificativa:** os `.gitignore` atuais não ignoram `.env`; sugerir criar um arquivo desses arriscaria um `.env` versionado, contra o REQ-EN-15. A linha de comando não deixa arquivo nenhum.
 - **Requisitos relacionados:** REQ-EN-08, REQ-EN-15.
 
@@ -128,16 +119,16 @@ Não há testes automatizados novos: a feature não muda código. As suítes exi
 | Requisito | Como verificar                                                                                                                                                                 |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | REQ-EN-01 | `README.md` existe na raiz e está em português (leitura).                                                                                                                       |
-| REQ-EN-02 | Leitura: seções 1 e 2 do README presentes.                                                                                                                                      |
-| REQ-EN-03 | Leitura: seção 3 com as duas linhas do Node (DT-01), npm, Git e a versão testada.                                                                                               |
+| REQ-EN-02 | Leitura: cabeçalho com título, descrição e linha de stack. |
+| REQ-EN-03 | Leitura: linha de pré-requisitos em "Como rodar" com as duas linhas do Node (DT-01), npm, Git e a versão testada. |
 | REQ-EN-04 | Leitura: comando `git clone` com a URL exata; conferido de verdade em REQ-EN-13.                                                                                                |
-| REQ-EN-05 | No clone limpo: os comandos da seção 5 instalam e sobem a API; a saída mostra `API rodando em http://localhost:3001` e `GET /inscricoes` responde `200`.                        |
-| REQ-EN-06 | No clone limpo: os comandos da seção 6 instalam e sobem o site; `http://localhost:5173` responde `200`.                                                                         |
+| REQ-EN-05 | No clone limpo: os comandos do "Terminal 1" instalam e sobem a API; a saída mostra `API rodando em http://localhost:3001` e `GET /inscricoes` responde `200`. |
+| REQ-EN-06 | No clone limpo: os comandos do "Terminal 2" instalam e sobem o site; `http://localhost:5173` responde `200`. |
 | REQ-EN-07 | No clone limpo: `npm test` passa em `backend/` e em `frontend/`.                                                                                                                |
-| REQ-EN-08 | Leitura: seção 8 com as duas variáveis, os padrões, os exemplos em bash e PowerShell e o aviso da porta `5173`; valores conferidos contra `server.js`, `vite.config.js` e `api/inscricoes.js`. |
-| REQ-EN-09 | Leitura: seção 9 confere com os contratos de `01-api-inscricoes` (rotas, status, mensagens).                                                                                    |
-| REQ-EN-10 | Leitura: aviso da memória presente.                                                                                                                                              |
-| REQ-EN-11 | Leitura da seção 11 e a busca do DT-04 sem resultado.                                                                                                                           |
+| REQ-EN-08 | Leitura: nota de "Como rodar" com as duas variáveis, os padrões e o aviso da porta `5173`; valores conferidos contra `server.js`, `vite.config.js` e `api/inscricoes.js`. |
+| REQ-EN-09 | Leitura: seção API confere com os contratos de `01-api-inscricoes` (rotas, status, mensagens). |
+| REQ-EN-10 | Leitura: aviso da memória presente na nota de "Como rodar". |
+| REQ-EN-11 | Leitura da seção Organização e a busca do DT-04 sem resultado. |
 | REQ-EN-12 | Clone limpo (DT-05) seguindo só o README: instalação, API e site no ar, suítes passando; a usuária cria uma inscrição, vê na lista e exclui pelo navegador (DT-06).             |
 | REQ-EN-13 | Consulta anônima `https://api.github.com/repos/Dybekz/inscricao-evento` com `"visibility": "public"`, e `git clone` da URL do README numa pasta temporária funcionando sem login. |
 | REQ-EN-14 | Depois do push: `git status -sb` mostra `main...origin/main` sem `ahead`, e `git rev-parse main` igual a `git rev-parse origin/main`.                                            |
