@@ -8,7 +8,7 @@
 
 ## Tarefas
 
-- [ ] **T01: Escrever o README**
+- [x] **T01: Escrever o README**
   - **Descrição:** reescrever o `README.md` da raiz com as 11 seções da tabela "Estrutura do README" do design, em português: título e descrição, tecnologias, pré-requisitos (DT-01), clonar, rodar o backend, rodar o frontend, testes, configuração (`PORT` e `VITE_API_URL`, com exemplos em bash e PowerShell, DT-03), API (3 endpoints, modelo, regras e formato de erro, copiados dos contratos de `01-api-inscricoes`), aviso de dados em memória e como o projeto foi organizado (`specs/`, chamando as regras de "regras do projeto", DT-04). Conferir cada valor citado (portas, comandos, mensagens, saída do servidor) contra o código atual: `backend/package.json`, `backend/src/server.js`, `backend/src/app.js`, `frontend/package.json`, `frontend/vite.config.js` e `frontend/src/api/inscricoes.js`.
   - **Requisitos:** REQ-EN-01, REQ-EN-02, REQ-EN-03, REQ-EN-04, REQ-EN-05, REQ-EN-06, REQ-EN-07, REQ-EN-08, REQ-EN-09, REQ-EN-10, REQ-EN-11
   - **Arquivos:** `README.md` (alterar)
@@ -38,17 +38,17 @@ Todos os requisitos desta feature são de verificação manual (não há código
 
 | Requisito | Tarefa(s) | Verificação prevista                                                                                       | Status   |
 | --------- | --------- | ---------------------------------------------------------------------------------------------------------- | -------- |
-| REQ-EN-01 | T01       | `README.md` na raiz, em português                                                                           | pendente |
-| REQ-EN-02 | T01       | seções de título, descrição e tecnologias presentes                                                         | pendente |
-| REQ-EN-03 | T01       | pré-requisitos com Node 22.22.2+ ou 24.15+, npm, Git e a versão testada                                     | pendente |
-| REQ-EN-04 | T01, T03  | comando `git clone` com a URL; clone real pela URL em T03                                                   | pendente |
-| REQ-EN-05 | T01, T02  | comandos do backend; no clone, a API sobe com a saída esperada e `GET /inscricoes` → `200`                  | pendente |
-| REQ-EN-06 | T01, T02  | comandos do frontend; no clone, `http://localhost:5173` → `200`                                             | pendente |
-| REQ-EN-07 | T01, T02  | comando de testes; no clone, `npm test` passa nos dois pacotes                                              | pendente |
-| REQ-EN-08 | T01       | `PORT` e `VITE_API_URL` com padrões, exemplos em bash e PowerShell e aviso da porta `5173`, conferidos no código | pendente |
-| REQ-EN-09 | T01       | endpoints, modelo, regras e formato de erro conferidos com os contratos de `01-api-inscricoes`              | pendente |
-| REQ-EN-10 | T01       | aviso de dados em memória presente                                                                          | pendente |
-| REQ-EN-11 | T01       | seção sobre `specs/` e busca do DT-04 sem resultado                                                         | pendente |
+| REQ-EN-01 | T01       | `README.md` na raiz, em português                                                                           | implementado |
+| REQ-EN-02 | T01       | seções de título, descrição e tecnologias presentes                                                         | implementado |
+| REQ-EN-03 | T01       | pré-requisitos com Node 22.22.2+ ou 24.15+, npm, Git e a versão testada                                     | implementado |
+| REQ-EN-04 | T01, T03  | comando `git clone` com a URL; clone real pela URL em T03                                                   | README pronto (T01); clone real em T03 |
+| REQ-EN-05 | T01, T02  | comandos do backend; no clone, a API sobe com a saída esperada e `GET /inscricoes` → `200`                  | README pronto (T01); verificação em T02 |
+| REQ-EN-06 | T01, T02  | comandos do frontend; no clone, `http://localhost:5173` → `200`                                             | README pronto (T01); verificação em T02 |
+| REQ-EN-07 | T01, T02  | comando de testes; no clone, `npm test` passa nos dois pacotes                                              | README pronto (T01); verificação em T02 |
+| REQ-EN-08 | T01       | `PORT` e `VITE_API_URL` com padrões, exemplos em bash e PowerShell e aviso da porta `5173`, conferidos no código | implementado |
+| REQ-EN-09 | T01       | endpoints, modelo, regras e formato de erro conferidos com os contratos de `01-api-inscricoes`              | implementado |
+| REQ-EN-10 | T01       | aviso de dados em memória presente                                                                          | implementado |
+| REQ-EN-11 | T01       | seção sobre `specs/` e busca do DT-04 sem resultado                                                         | implementado |
 | REQ-EN-12 | T02       | clone limpo seguindo só o README; fluxo de inscrever, listar e excluir feito pela usuária                   | pendente |
 | REQ-EN-13 | T03       | API do GitHub sem login com `"visibility": "public"`; clone pela URL sem login                              | pendente |
 | REQ-EN-14 | T03       | depois do push, `main` local igual a `origin/main`                                                          | pendente |
