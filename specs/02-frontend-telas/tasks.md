@@ -1,7 +1,7 @@
 > **Feature:** 02-frontend-telas
 > **Documento:** tarefas
 > **Status:** aprovado
-> **Aprovado em:** 2026-10-24
+> **Aprovado em:** 2026-10-25
 > **Revisão:** aprovada
 
 # Tarefas — 02-frontend-telas
@@ -96,6 +96,14 @@
   - **Depende de:** T03, T08, T10
   - **Commit sugerido:** `docs/specs - registra as verificações manuais do front`
 
+- [x] **T12: Trocar o local do evento**
+  - **Descrição:** em `dados/evento.js`, trocar o `local` para `'Centro de eventos, Concórdia (SC)'`, conforme a seção "Conteúdo do evento" do design (pedido da usuária em 2026-10-25). O teste "REQ-FE-04" já lê o texto de `evento.local`, então não muda.
+  - **Requisitos:** REQ-FE-04
+  - **Arquivos:** `frontend/src/dados/evento.js` (alterar)
+  - **Critério de pronto:** `npm test` passa com toda a suíte do frontend, incluindo "REQ-FE-04: mostra nome, data, local e descrição do evento"; no navegador, a tela do evento mostra "Centro de eventos, Concórdia (SC)".
+  - **Depende de:** T11
+  - **Commit sugerido:** `feat/frontend - troca o local do evento`
+
 ## Matriz de rastreabilidade
 
 | Requisito | Tarefa(s)      | Teste(s) previsto(s)                                                                   | Status   |
@@ -103,7 +111,7 @@
 | REQ-FE-01 | T02            | `navegacao.test.jsx` › "REQ-FE-01: cada caminho mostra a sua tela"; "REQ-FE-01: os links do cabeçalho trocam de tela" | conforme |
 | REQ-FE-02 | T02            | `navegacao.test.jsx` › "REQ-FE-02: o cabeçalho com os links para as 3 telas aparece em todas elas" | conforme |
 | REQ-FE-03 | T02            | `navegacao.test.jsx` › "REQ-FE-03: caminho desconhecido mostra \"Página não encontrada\" e o link volta para o evento" | conforme |
-| REQ-FE-04 | T03            | `evento.test.jsx` › "REQ-FE-04: mostra nome, data, local e descrição do evento" | conforme |
+| REQ-FE-04 | T03, T12       | `evento.test.jsx` › "REQ-FE-04: mostra nome, data, local e descrição do evento" | conforme; T12 (2026-10-25): local trocado para "Centro de eventos, Concórdia (SC)", teste passando e conferido pela usuária no navegador |
 | REQ-FE-05 | T03            | `evento.test.jsx` › "REQ-FE-05: mostra cada palestrante com nome, cargo e empresa, tema e iniciais" | conforme |
 | REQ-FE-06 | T03            | `evento.test.jsx` › "REQ-FE-06: o botão \"Inscreva-se\" leva à tela de inscrição" | conforme |
 | REQ-FE-07 | T06            | `inscricao.test.jsx` › "REQ-FE-07: mostra os campos com rótulo e o telefone opcional com exemplo de formato"                                                | conforme |
@@ -147,3 +155,11 @@ Verificação de ponta a ponta (T11, 2026-10-24): suítes do backend (26/26) e d
   - Detalhes de implementação que não estão no design, mas não criam comportamento novo: atributos `autoComplete` nos campos, `role="region"` com `tabIndex` na área de rolagem da tabela (acessibilidade de REQ-FE-32), um parágrafo de introdução no formulário e na página não encontrada, e a mensagem "Erro inesperado do servidor" também quando o JSON de erro vem sem `erro`.
   - Erros inesperados (que não são `ErroDaApi` nem `ErroDeConexao`) no envio do formulário são relançados, sem mensagem na tela; não há requisito para esse caso.
   - Em desenvolvimento, o `StrictMode` faz a tela de inscritos buscar a lista duas vezes ao abrir; não afeta o comportamento nem o build.
+
+### 2026-10-25 (T12)
+
+- **Escopo:** só `frontend/src/dados/evento.js` mudou, na linha do `local` (`'Centro de eventos, Concórdia (SC)'`), igual à seção "Conteúdo do evento" do design. Nenhum resto do local antigo no código, nos testes ou no README.
+- **Testes:** frontend 50/50 e backend 26/26 passando, incluindo "REQ-FE-04: mostra nome, data, local e descrição do evento".
+- **Verificação manual:** a usuária viu a tela do evento no navegador com o local novo.
+- **Responsividade (REQ-FE-31):** o texto novo é mais curto que o anterior e nenhum CSS mudou, então o layout verificado na T11 continua valendo.
+- **Resultado:** 33 de 33 requisitos conformes, sem lacunas. Revisão aprovada pela usuária em 2026-10-25.

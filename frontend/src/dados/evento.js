@@ -2,7 +2,7 @@
 export const evento = {
   nome: 'Conecta Tech 2027',
   data: 'Sábado, 15 de maio de 2027, das 9h às 18h',
-  local: 'Centro de Convenções Vila Tech, Florianópolis (SC)',
+  local: 'Centro de eventos, Concórdia (SC)',
   descricao:
     'Um dia inteiro de palestras sobre desenvolvimento web, dados, inteligência artificial e segurança, feito para estudantes e profissionais que querem aprender com quem está construindo tecnologia no dia a dia.',
   palestrantes: [

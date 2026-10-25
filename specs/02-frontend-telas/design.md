@@ -1,7 +1,7 @@
 > **Feature:** 02-frontend-telas
 > **Documento:** design
 > **Status:** aprovado
-> **Aprovado em:** 2026-10-24
+> **Aprovado em:** 2026-10-25
 
 # Design — 02-frontend-telas
 
@@ -126,7 +126,7 @@ Dados fictícios, fixos no front:
 export const evento = {
   nome: 'Conecta Tech 2027',
   data: 'Sábado, 15 de maio de 2027, das 9h às 18h',
-  local: 'Centro de Convenções Vila Tech, Florianópolis (SC)',
+  local: 'Centro de eventos, Concórdia (SC)',
   descricao: 'Um dia inteiro de palestras sobre desenvolvimento web, dados, inteligência artificial e segurança, feito para estudantes e profissionais que querem aprender com quem está construindo tecnologia no dia a dia.',
   palestrantes: [
     { nome: 'Ana Ribeiro',     cargo: 'Engenheira de Software Sênior', empresa: 'Nuvem Austral',  tema: 'Arquiteturas que crescem sem dor' },
